@@ -1,1 +1,6 @@
-a personal webpage written from scratch
+personal webpage :-)
+
+### Assets
+
+- GitHub Icon from GitHub.
+- Other icons from HeroIcons (MIT).

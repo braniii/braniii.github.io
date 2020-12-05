@@ -1,0 +1,19 @@
+{
+  "name": "sunset-glow",
+  "version": "1.0.0",
+  "description": "personal site",
+  "main": "index.html",
+  "repository": "git@github.com:azuline/site.git",
+  "author": "azuline <azuline@riseup.net>",
+  "license": "Apache-2.0",
+  "private": false,
+  "dependencies": {
+    "autoprefixer": "^9.8.6",
+    "postcss": "^8.1.14",
+    "tailwindcss": "^2.0.1"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production tailwind build src/index.tailwind.css -o src/static/index.css",
+    "build:dev": "tailwind build src/index.tailwind.css -o src/static/index.css"
+  }
+}

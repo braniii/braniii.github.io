@@ -1,2 +1,2 @@
-*.map
-.sass-cache/
+/node_modules/
+/src/static/index.css
