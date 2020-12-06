@@ -45,6 +45,10 @@
   @apply text-sm uppercase;
 }
 
+.project > .title:hover span {
+  @apply underline;
+}
+
 .project > .title .ext {
   @apply w-3.5 h-3.5 ml-1.5 text-gray-400;
 }
