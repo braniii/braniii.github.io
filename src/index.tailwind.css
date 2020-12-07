@@ -11,6 +11,12 @@
   @apply -mx-6 border-t-2 border-gray-100 sm:-mx-3;
 }
 
+.gh-wrapper {
+  width: 1.09rem;
+  height: 1.25rem;
+  padding: 0.08rem 0;
+}
+
 .section {
   @apply my-6;
 }
