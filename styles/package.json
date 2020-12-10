@@ -15,8 +15,8 @@
     "tailwindcss": "^2.0.1"
   },
   "scripts": {
-    "build": "NODE_ENV=production postcss src/index.tailwind.css -o src/static/index.css",
-    "watch": "watch 'yarn run build:dev' ./src/index.tailwind.css",
-    "build:dev": "tailwind build src/index.tailwind.css -o src/static/index.css"
+    "build": "NODE_ENV=production postcss index.tailwind.css -o ../build/static/index.css",
+    "watch": "watch 'yarn run build:dev' ./index.tailwind.css",
+    "build:dev": "tailwind build index.tailwind.css -o ../build/static/index.css"
   }
 }

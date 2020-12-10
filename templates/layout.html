@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>sunset glow</title>
+  <link href="/static/index.css" rel="stylesheet" type="text/css" media="all" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body class="bg-gray-50">
+  <div class="w-full max-w-3xl px-6 mx-auto">
+    {% include "header.html" %}
+    {% block content %}
+    {% endblock %}
+    {% include "footer.html" %}
+  </div>
+</body>
+
+</html>

@@ -1,2 +1,3 @@
-/node_modules/
-/src/static/index.css
+/styles/node_modules/
+/build/
+__pycache__
