@@ -38,7 +38,9 @@ if __name__ == "__main__":
     build_static_dir.mkdir(exist_ok=True, parents=True)
 
     render_page("index")
-    shutil.copytree(assets_dir, build_static_dir, dirs_exist_ok=True)
+
+    for asset in assets_dir.iterdir():
+        shutil.copy(asset, build_static_dir)
 
     if len(sys.argv) > 1 and sys.argv[1] == "full":
         subprocess.run("cd styles; yarn build", shell=True)
