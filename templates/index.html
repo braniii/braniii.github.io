@@ -2,9 +2,9 @@
 
 {% block content %}
 <!-- About -->
-<div class="section">
-  <div class="content">
-    <div class="description">
+<div class="mt-2 mb-6">
+  <div>
+    <div class="text-sm text-gray-600">
       <span class="italic text-gray-500">
         This floating life is like a dream; how much longer can we enjoy our
         happiness?
@@ -14,15 +14,17 @@
 </div>
 
 <!-- Projects -->
-<div class="section">
-  <div class="title"><span>Software</span></div>
-  <div class="content">
+<div class="my-6">
+  <div class="w-auto mb-6 sm:w-36">
+    <span class="text-lg font-medium">Software</span>
+  </div>
+  <div>
     {% for sw in software %}
-    <div class="project">
-      <div class="title">
-        <a href="{{ sw.url }}">
-          <span>{{ sw.title }}</span>
-          <div class="ext">
+    <div class="px-4 py-3 my-3 border-l-2 border-green-300 bg-gray-50 sm:flex rounded-sm">
+      <div class="mb-2 sm:mb-0 sm:flex-none sm:w-36">
+        <a class="flex items-center hover:underline" href="{{ sw.url }}">
+          <span class="text-sm text-gray-800 uppercase">{{ sw.title }}</span>
+          <div class="w-3.5 h-3.5 ml-1.5 text-gray-400">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path
                 d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
@@ -31,7 +33,7 @@
           </div>
         </a>
       </div>
-      <div class="description">
+      <div class="text-sm text-gray-600">
         <span>{{ sw.description }}</span>
       </div>
     </div>
