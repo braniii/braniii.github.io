@@ -2,7 +2,7 @@
   "software": [
     {
       "title": "repertoire",
-      "description": "a music server designed for cataloguing and exploring large libraries of music",
+      "description": "a music server for cataloguing and exploring large music libraries",
       "url": "https://github.com/azuline/repertoire"
     },
     {
