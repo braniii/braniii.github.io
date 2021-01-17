@@ -11,8 +11,13 @@ import flask
 app = flask.Flask(__name__, static_folder="build/static")
 
 
+@app.route("/")
+def index():
+    return flask.send_file("build/index.html")
+
+
 @app.route("/<path:path>")
-def index(path):
+def other(path):
     return flask.send_from_directory("build", path)
 
 
