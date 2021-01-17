@@ -2,32 +2,32 @@
   "software": [
     {
       "title": "repertoire",
-      "description": "A music server designed for cataloguing and exploring large libraries of music.",
+      "description": "a music server designed for cataloguing and exploring large libraries of music",
       "url": "https://github.com/azuline/repertoire"
     },
     {
       "title": "chitanda",
-      "description": "An extensible and modular bot for IRC and Discord.",
+      "description": "an extensible and modular bot for IRC and Discord",
       "url": "https://github.com/azuline/chitanda"
     },
     {
       "title": "saffron",
-      "description": "A little private file hosting service.",
+      "description": "a little private file hosting service",
       "url": "https://github.com/azuline/saffron"
     },
     {
       "title": "pixiv-api",
-      "description": "A wrapper library for pixiv's JSON API.",
+      "description": "a wrapper library for pixiv's JSON API",
       "url": "https://github.com/azuline/pixiv-api"
     },
     {
       "title": "pixi",
-      "description": "A command line tool to download illustrations from pixiv.",
+      "description": "a command line tool to download illustrations from pixiv",
       "url": "https://github.com/azuline/pixi"
     },
     {
       "title": "tagfiles",
-      "description": "A uniform interface for various audio tagging standards.",
+      "description": "a uniform interface for various audio tagging standards",
       "url": "https://github.com/azuline/tagfiles"
     }
   ]
