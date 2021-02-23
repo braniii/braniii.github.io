@@ -1,34 +1,65 @@
 {
   "software": [
     {
-      "title": "repertoire",
-      "description": "a music server for cataloguing and exploring large music libraries",
-      "url": "https://github.com/azuline/repertoire"
+      "title": "prettypyplot",
+      "contribution": "creator",
+      "description": "a wrapper for creating easily beatiful matplotlib figures",
+      "url": "https://braniii.gitlab.io/prettypyplot",
+      "hashtag": "#python #matplotlib"
     },
     {
-      "title": "chitanda",
-      "description": "an extensible and modular bot for IRC and Discord",
-      "url": "https://github.com/azuline/chitanda"
+      "title": "adonify",
+      "contribution": "creator",
+      "description": "a flutter workout app for creating workouts and tracking progress",
+      "url": "https://mobilemovement.gitlab.io/adonify",
+      "hashtag": "#flutter #dart"
     },
     {
-      "title": "saffron",
-      "description": "a little private file hosting service",
-      "url": "https://github.com/azuline/saffron"
+      "title": "ameixa",
+      "contribution": "maintainer",
+      "description": "a minimmalistic Material Design inspired icon pack for android",
+      "url": "https://xphnx.gitlab.io/ameixa/",
+      "hashtag": "#icontheme #android"
     },
     {
-      "title": "pixiv-api",
-      "description": "a wrapper library for pixiv's JSON API",
-      "url": "https://github.com/azuline/pixiv-api"
+      "title": "msmhelper",
+      "contribution": "creator",
+      "description": "a time sequence analysis tool for employing Markov state models.",
+      "url": "https://moldyn.github.io/msmhlper",
+      "hashtag": "#python #dataanalysis"
     },
     {
-      "title": "pixi",
-      "description": "a command line tool to download illustrations from pixiv",
-      "url": "https://github.com/azuline/pixi"
+      "title": "robust density clustering",
+      "contribution": "maintainer",
+      "description": "a cpp framework providing an density-based clustering algorithm including helpful tools",
+      "url": "https://moldyn.github.io/clustering",
+      "hashtag": "#cpp #clustering"
     },
     {
-      "title": "tagfiles",
-      "description": "a uniform interface for various audio tagging standards",
-      "url": "https://github.com/azuline/tagfiles"
+      "title": "MSMPathfinder",
+      "contribution": "creator",
+      "description": "a cpp proof-of-concept implementation of pathway-analysis of Markov state models.",
+      "url": "https://github.com/moldyn/MSMPathfinder",
+      "hashtag": "#cpp #dataanalysis"
+    }
+  ],
+  "articles": [
+    {
+      "authors": "D. Nagel, A. Weber and G. Stock",
+      "title": "MSMPathfinder: Identification of Pathways in Markov State Models",
+      "journal": "J. Chem. Theory Comput., 16, 7874",
+      "year": "2020",
+      "doi": "10.1021/acs.jctc.0c00774",
+      "url": "https://pubs.acs.org/doi/10.1021/acs.jctc.0c00774"
+    },
+    {
+      "authors": "D. Nagel, A. Weber, B. Lickert and G. Stock",
+      "title": "Dynamical coring of Markov state models",
+      "journal": "J. Chem. Phys., 150, 094111",
+      "year": "2019",
+      "doi": "10.1063/1.5081767",
+      "url": "https://aip.scitation.org/doi/10.1063/1.5081767"
     }
   ]
 }
+

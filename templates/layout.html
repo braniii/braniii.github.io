@@ -2,18 +2,22 @@
 <html>
 
 <head>
-  <title>sunset glow</title>
+  <title>Daniel Nagel</title>
   <link href="/static/index.css" rel="stylesheet" type="text/css" media="all" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
-<body class="white">
-  <div class="w-full max-w-2xl px-6 mx-auto">
-    {% include "header.html" %}
-    {% block content %}
-    {% endblock %}
-    {% include "footer.html" %}
-  </div>
+<body class="bg-gradient-striped min-w-screen min-h-screen sm:py-6 transform">
+  <div class="flex w-full min-h-screen items-start sm:items-center justify-center">
+    <div class="sm:pt-60">
+      <div class="w-full max-w-2xl px-6 mx-auto my-auto h-auto bg-opacity-75 sm:bg-opacity-100 bg-gray-50 sm:rounded-3xl shadow-3xl">
+        {% include "header.html" %}
+        {% block content %}
+        {% endblock %}
+        {% include "footer.html" %}
+      </div>
+    </div>
+</div>
 </body>
 
 </html>
