@@ -24,23 +24,16 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v1
       - uses: actions/setup-python@v2
+      - uses: knowsuchagency/poetry-install@v2
+      - uses: actions/setup-node@v2
         with:
-          python-version: 3.8
+          node-version: 10
       - run: |
-          pip install -U pip
-          pip install poetry
-          poetry install
-        env:
-          POETRY_VIRTUALENVS_CREATE: false
-      - run: cd styles/
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: install
-      - run: cd ..
-        
-      - run: |
-          ./compile.py full
-          mv build public
+           cd styles/
+           yarn install
+           cd ..
+           ./compile.py full
+           mv build public
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
