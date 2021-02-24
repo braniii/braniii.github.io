@@ -35,7 +35,7 @@ jobs:
            cd styles/
            yarn install
            cd ..
-           ./compile.py full
+           python compile.py full
            mv build public
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
