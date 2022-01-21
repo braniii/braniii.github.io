@@ -1,8 +1,7 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-	purge: ["../templates/*.html"],
-	darkMode: "media",
+	content: ["../templates/*.html"],
 	theme: {
 		extend: {
 			spacing: {
@@ -24,13 +23,10 @@ module.exports = {
           'greenish': '#4d908e',
 			black: colors.black,
       white: colors.white,
-      gray: colors.blueGray,
+      gray: colors.slate,
       blue: colors.teal,
       red: colors.rose,
       yellow: colors.amber,
 		},
-  },
-  variants: {
-    extend: {},
   },
 };
