@@ -8,6 +8,13 @@
       "hashtag": "#python #matplotlib"
     },
     {
+      "title": "MoSAIC",
+      "contribution": "creator",
+      "description": "a correlation-based feature selection method",
+      "url": "https://github.com/moldyn/MoSAIC",
+      "hashtag": "#python #feature-selection"
+    },
+    {
       "title": "decorit",
       "contribution": "creator",
       "description": "ready-to-use python decorators",
@@ -52,7 +59,15 @@
   ],
   "articles": [
     {
-      "authors": "D. Nagel, A. Weber and G. Stock",
+      "authors": "G. Dize, D. Nagel, and G. Stock",
+      "title": "Correlation-based feature selection to identify functional dynamcis in proteins",
+      "journal": "arXiv",
+      "year": "2022",
+      "doi": "arXiv:2204.02770",
+      "url": "https://arxiv.org/abs/2204.02770"
+    }
+    {
+      "authors": "D. Nagel, A. Weber, and G. Stock",
       "title": "MSMPathfinder: Identification of Pathways in Markov State Models",
       "journal": "J. Chem. Theory Comput., 16, 7874",
       "year": "2020",
@@ -60,7 +75,7 @@
       "url": "https://pubs.acs.org/doi/10.1021/acs.jctc.0c00774"
     },
     {
-      "authors": "D. Nagel, A. Weber, B. Lickert and G. Stock",
+      "authors": "D. Nagel, A. Weber, B. Lickert, and G. Stock",
       "title": "Dynamical coring of Markov state models",
       "journal": "J. Chem. Phys., 150, 094111",
       "year": "2019",
