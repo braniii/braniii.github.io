@@ -8,25 +8,18 @@
       "hashtag": "#python #matplotlib"
     },
     {
+      "title": "msmhelper",
+      "contribution": "creator",
+      "description": "a time sequence analysis tool for employing Markov state models.",
+      "url": "https://moldyn.github.io/msmhelper",
+      "hashtag": "#python #markovchain #numba #dataanalysis"
+    },
+    {
       "title": "MoSAIC",
       "contribution": "creator",
       "description": "a correlation-based feature selection method",
       "url": "https://github.com/moldyn/MoSAIC",
-      "hashtag": "#python #feature-selection"
-    },
-    {
-      "title": "decorit",
-      "contribution": "creator",
-      "description": "ready-to-use python decorators",
-      "url": "https://braniii.gitlab.io/decorit",
-      "hashtag": "#python #beartype"
-    },
-    {
-      "title": "adonify",
-      "contribution": "creator",
-      "description": "a flutter workout app for creating workouts and tracking progress",
-      "url": "https://mobilemovement.gitlab.io/adonify",
-      "hashtag": "#flutter #dart"
+      "hashtag": "#python #feature-selection #ml"
     },
     {
       "title": "ameixa",
@@ -34,13 +27,6 @@
       "description": "a minimmalistic Material Design inspired icon pack for android",
       "url": "https://xphnx.gitlab.io/ameixa/",
       "hashtag": "#icontheme #android"
-    },
-    {
-      "title": "msmhelper",
-      "contribution": "creator",
-      "description": "a time sequence analysis tool for employing Markov state models.",
-      "url": "https://moldyn.github.io/msmhelper",
-      "hashtag": "#python #numba #dataanalysis"
     },
     {
       "title": "MSMPathfinder",
