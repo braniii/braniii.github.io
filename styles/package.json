@@ -1,10 +1,10 @@
 {
-  "name": "sunset-glow",
+  "name": "braniii",
   "version": "1.0.0",
   "description": "personal site",
   "main": "index.html",
-  "repository": "git@github.com:azuline/site.git",
-  "author": "azuline <azuline@riseup.net>",
+  "repository": "git@github.com:braniii/braniii.github.io.git",
+  "author": "braniii",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {

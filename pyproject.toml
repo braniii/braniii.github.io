@@ -2,7 +2,7 @@
 name = "site"
 version = "0.1.0"
 description = ""
-authors = ["blissful <blissful@sunsetglow.net>"]
+authors = ["braniii"]
 license = "Apache-2.0"
 
 [tool.poetry.dependencies]
