@@ -46,11 +46,11 @@
   "articles": [
     {
       "authors": "G. Diez, D. Nagel, and G. Stock",
-      "title": "Correlation-based feature selection to identify functional dynamcis in proteins",
-      "journal": "arXiv",
+      "title": "Correlation-Based Feature Selection to Identify Functional Dynamcis in Proteins",
+      "journal": "J. Chem. Theory Comput., 18, 5079",
       "year": "2022",
-      "doi": "arXiv:2204.02770",
-      "url": "https://arxiv.org/abs/2204.02770"
+      "doi": "10.1021/acs.jctc.2c00337",
+      "url": "https://pubs.acs.org/doi/10.1021/acs.jctc.2c00337"
     },
     {
       "authors": "D. Nagel, A. Weber, and G. Stock",
