@@ -8,7 +8,7 @@
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "cssnano": "^4.1.10",
+    "cssnano": "^5.1.14",
     "postcss-cli": "^8.3.0"
   },
   "scripts": {
