@@ -7,17 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 
-<body class="bg-gradient-striped min-w-screen min-h-screen sm:py-6 transform">
+<body class="bg-white min-w-screen min-h-screen sm:py-6">
   <div class="flex w-full min-h-screen items-start sm:items-center justify-center">
     <div class="sm:pt-60">
-      <div class="w-full max-w-2xl px-6 mx-auto my-auto h-auto bg-opacity-75 sm:bg-opacity-100 bg-gray-50 sm:rounded-3xl shadow-3xl">
+      <div class="w-full max-w-2xl px-6 mx-auto my-auto h-auto">
         <!-- Header -->
 <div class="flex flex-row justify-around sm:flex-col items-center h-32 py-24 sm:py-6">
   <div class="flex justify-center sm:h-0">
-    <img src="static/avatar.jpg" alt="" class="sm:animate-avatar-bounce sm:relative sm:-top-60 object-cover rounded-tl-3xl rounded-br-3xl sm:rounded-full mx-auto w-32 h-32 sm:w-48 sm:mb-4 sm:h-48 shadow-md sm:shadow-2xl border-2 sm:border-4 border-gray-100">
+    <img src="static/avatar.jpg" alt="" class="sm:relative sm:-top-60 object-cover rounded-tl-3xl rounded-br-3xl sm:rounded-full mx-auto w-32 h-32 sm:w-48 sm:mb-4 sm:h-48 shadow-md sm:shadow-2xl border-2 sm:border-4 border-gray-500">
   </div>
   <div class="flex flex-col items-center">
-    <div class="flex flex-col sm:flex-row items-center text-black text-2xl">
+    <div class="flex flex-col sm:flex-row items-center text-black text-4xl">
       <div class="flex"><span class="font-bold">Daniel Nagel</span></div>
       <div class="flex" title="almost everywhere in the internet"><span class="text-greenish">@braniii</span></div>
     </div>
@@ -57,9 +57,16 @@
 <!-- About -->
 <div class="mt-2 sm:mt-0 mb-6 sm:mb-12">
   <div>
-    <div class="text-sm text-gray-600 text-justify">
-      <span class="italic">
-        I am a physics Ph.D. student at <a href="https://www.moldyn.uni-freiburg.de" target="_blank"><span class="text-greenish">Moldyn Freiburg</span></a> improving Markov state model workflow to describe conformational protein dynamics better. </span>
+    <div class="text-base text-gray-600 text-justify italic">
+      <span class="inline-block">
+	Hi there👋,
+      </span>
+      <span class="inline-block">
+	I am a physics Ph.D. student in my final year at <a href="https://www.moldyn.uni-freiburg.de" target="_blank"><span class="text-greenish">Moldyn Freiburg</span></a>. In the field of analysing and modeling of MD protein simulation🧬🔬💻, my research focuses on Markov state modeling of fast folding peptides. Unlike most existing approaches, I focus not only on identifying metastable states, but also that they are of biochemical relevance.
+      </span>
+      <span class="inline-block">
+	Otherwise, I am a big fan and advocate of open-source software. Besides a few scientific Python packages and C++ programs, I always try to challenge myself with other programming languages. Since 2018, I am the maintainer of <a href="https://xphnx.gitlab.io/ameixa/" target="_blank"><span class="text-greenish">ameixa</span></a> one of the most popular FOSS Android icon themes. My newest language is Dart/Flutter where I will soon release my first own app. So stay tuned.
+    </span>
     </div>
   </div>
 </div>
@@ -67,12 +74,15 @@
 <!-- Projects -->
 <div class="my-6">
   <div class="flex my-6 justify-center">
-    <span class="text-lg font-medium uppercase">publications</span>
+    <span class="text-xl font-medium uppercase">publications 📚</span>
+  </div>
+  <div class="text-base text-gray-600 text-center italic">
+	  <span class="text-base">You can also check out my <a href="https://scholar.google.com/citations?user=fg5aD8QAAAAJ" target="_blank"><span class="text-greenish">google scholar</span></a> for an up-to-date list.</span>
   </div>
   <div>
     
     <div class="px-4 py-3 my-3 border-l-4 border-greenish rounded-sm shadow-md hover:shadow-inner bg-gray-100 transition-shadow duration-300 rounded-r-xl">
-      <span class="text-sm">G. Diez, D. Nagel, and G. Stock, <a href="https://arxiv.org/abs/2204.02770" target="_blank"><span class="text-greenish italic">Correlation-based feature selection to identify functional dynamcis in proteins</span></a>, arXiv, 2022
+      <span class="text-sm">G. Diez, D. Nagel, and G. Stock, <a href="https://pubs.acs.org/doi/10.1021/acs.jctc.2c00337" target="_blank"><span class="text-greenish italic">Correlation-Based Feature Selection to Identify Functional Dynamcis in Proteins</span></a>, J. Chem. Theory Comput., 18, 5079, 2022
       </span>
     </div>
     
@@ -89,7 +99,10 @@
   </div>
 
   <div class="flex my-6 justify-center">
-    <span class="text-lg font-medium uppercase">software</span>
+    <span class="text-xl font-medium uppercase">software 💿</span>
+  </div>
+  <div class="text-base text-gray-600 text-center italic">
+    <span class="text-base">The following list is not complete. Please refer to my Github/Gitlab pages for more details.</span>
   </div>
   <div>
     
@@ -117,6 +130,28 @@
     
     <div class="flex flex-col px-4 py-3 my-3 border-l-4 border-greenish rounded-sm shadow-md hover:shadow-inner bg-gray-100 transition-shadow duration-300 rounded-r-xl">
       <div class="flex mb-2">
+        <a class="flex items-center" href="https://moldyn.github.io/msmhelper" target="_blank">
+          <span class="text-sm">msmhelper</span>
+          <div class="w-3.5 h-3.5 ml-1.5 text-greenish">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path
+                d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+              <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+            </svg>
+          </div>
+          <span class="text-sm text-gray-600 ml-1.5 italic">#creator</span>
+        </a>
+      </div>
+      <div class="flex text-sm text-gray-600">
+        <span>a time sequence analysis tool for employing Markov state models.</span>
+      </div>
+      <div class="flex text-sm text-greenish">
+        <span>#python #markovchain #numba #dataanalysis</span>
+      </div>
+    </div>
+    
+    <div class="flex flex-col px-4 py-3 my-3 border-l-4 border-greenish rounded-sm shadow-md hover:shadow-inner bg-gray-100 transition-shadow duration-300 rounded-r-xl">
+      <div class="flex mb-2">
         <a class="flex items-center" href="https://github.com/moldyn/MoSAIC" target="_blank">
           <span class="text-sm">MoSAIC</span>
           <div class="w-3.5 h-3.5 ml-1.5 text-greenish">
@@ -133,51 +168,7 @@
         <span>a correlation-based feature selection method</span>
       </div>
       <div class="flex text-sm text-greenish">
-        <span>#python #feature-selection</span>
-      </div>
-    </div>
-    
-    <div class="flex flex-col px-4 py-3 my-3 border-l-4 border-greenish rounded-sm shadow-md hover:shadow-inner bg-gray-100 transition-shadow duration-300 rounded-r-xl">
-      <div class="flex mb-2">
-        <a class="flex items-center" href="https://braniii.gitlab.io/decorit" target="_blank">
-          <span class="text-sm">decorit</span>
-          <div class="w-3.5 h-3.5 ml-1.5 text-greenish">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path
-                d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-              <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-            </svg>
-          </div>
-          <span class="text-sm text-gray-600 ml-1.5 italic">#creator</span>
-        </a>
-      </div>
-      <div class="flex text-sm text-gray-600">
-        <span>ready-to-use python decorators</span>
-      </div>
-      <div class="flex text-sm text-greenish">
-        <span>#python #beartype</span>
-      </div>
-    </div>
-    
-    <div class="flex flex-col px-4 py-3 my-3 border-l-4 border-greenish rounded-sm shadow-md hover:shadow-inner bg-gray-100 transition-shadow duration-300 rounded-r-xl">
-      <div class="flex mb-2">
-        <a class="flex items-center" href="https://mobilemovement.gitlab.io/adonify" target="_blank">
-          <span class="text-sm">adonify</span>
-          <div class="w-3.5 h-3.5 ml-1.5 text-greenish">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path
-                d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-              <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-            </svg>
-          </div>
-          <span class="text-sm text-gray-600 ml-1.5 italic">#creator</span>
-        </a>
-      </div>
-      <div class="flex text-sm text-gray-600">
-        <span>a flutter workout app for creating workouts and tracking progress</span>
-      </div>
-      <div class="flex text-sm text-greenish">
-        <span>#flutter #dart</span>
+        <span>#python #feature-selection #ml</span>
       </div>
     </div>
     
@@ -200,28 +191,6 @@
       </div>
       <div class="flex text-sm text-greenish">
         <span>#icontheme #android</span>
-      </div>
-    </div>
-    
-    <div class="flex flex-col px-4 py-3 my-3 border-l-4 border-greenish rounded-sm shadow-md hover:shadow-inner bg-gray-100 transition-shadow duration-300 rounded-r-xl">
-      <div class="flex mb-2">
-        <a class="flex items-center" href="https://moldyn.github.io/msmhelper" target="_blank">
-          <span class="text-sm">msmhelper</span>
-          <div class="w-3.5 h-3.5 ml-1.5 text-greenish">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path
-                d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-              <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-            </svg>
-          </div>
-          <span class="text-sm text-gray-600 ml-1.5 italic">#creator</span>
-        </a>
-      </div>
-      <div class="flex text-sm text-gray-600">
-        <span>a time sequence analysis tool for employing Markov state models.</span>
-      </div>
-      <div class="flex text-sm text-greenish">
-        <span>#python #numba #dataanalysis</span>
       </div>
     </div>
     
@@ -272,10 +241,15 @@
   </div>
 </div>
 
-        <div class="pb-6 text-sm text-right">
-  <a class="text-gray-600" href="https://github.com/braniii/braniii.github.io">
-    &lt;source /&gt;
-  </a>
+        <div class="flex flex-row pb-6 text-sm">
+  <div class="flex-auto text-gray-600">
+    2023 &copy; Daniel Nagel
+  </div>
+  <div class="flex-auto text-right">
+    <a class="text-gray-600" href="https://github.com/braniii/braniii.github.io">
+      &lt;source /&gt;
+    </a>
+  </div>
 </div>
       </div>
     </div>
