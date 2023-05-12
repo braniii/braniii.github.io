@@ -62,14 +62,14 @@
     {
       "authors": "D. Nagel, S. Sartore, and G. Stock",
       "title": "Selecting Features for Markov Modeling: A Case Study on HP35",
-      "journal": "arXiv",
+      "journal": "J. Chem. Theory Comput., XX, XXXX",
       "year": "2023",
-      "doi": "10.48550/arXiv.2303.03814",
-      "url": "https://arxiv.org/abs/2303.03814"
+      "doi": "10.1021/acs.jctc.3c00240",
+      "url": "https://pubs.acs.org/doi/10.1021/acs.jctc.3c00240"
     },
     {
       "authors": "G. Diez, D. Nagel, and G. Stock",
-      "title": "Correlation-Based Feature Selection to Identify Functional Dynamcis in Proteins",
+      "title": "Correlation-Based Feature Selection to Identify Functional Dynamics in Proteins",
       "journal": "J. Chem. Theory Comput., 18, 5079",
       "year": "2022",
       "doi": "10.1021/acs.jctc.2c00337",
