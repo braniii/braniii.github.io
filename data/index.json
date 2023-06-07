@@ -54,9 +54,9 @@
     {
       "authors": "D. Nagel, and G. Stock",
       "title": "msmhelper: A Python package for Markov state modeling of protein dynamics",
-      "journal": "J. Open Source Soft., under review",
+      "journal": "J. Open Source Soft., 8, 5339",
       "year": "2023",
-      "doi": "10.5281/zenodo.7710829",
+      "doi": "10.21105/joss.05339",
       "url": "https://joss.theoj.org/papers/0c2a2cd2ca10b5c0bdca4d0234eb94fd"
     },
     {
