@@ -52,17 +52,25 @@
   ],
   "articles": [
     {
+      "authors": "D. Nagel, S. Sartore, and G. Stock",
+      "title": "Towards a Benchmark for Markov State Models: The Folding of HP35",
+      "journal": "arXiv",
+      "year": "2023",
+      "doi": "2306.04331",
+      "url": "https://arxiv.org/abs/2306.04331"
+    },
+    {
       "authors": "D. Nagel, and G. Stock",
       "title": "msmhelper: A Python package for Markov state modeling of protein dynamics",
       "journal": "J. Open Source Soft., 8, 5339",
       "year": "2023",
       "doi": "10.21105/joss.05339",
-      "url": "https://joss.theoj.org/papers/0c2a2cd2ca10b5c0bdca4d0234eb94fd"
+      "url": "https://joss.theoj.org/papers/10.21105/joss.05339"
     },
     {
       "authors": "D. Nagel, S. Sartore, and G. Stock",
       "title": "Selecting Features for Markov Modeling: A Case Study on HP35",
-      "journal": "J. Chem. Theory Comput., XX, XXXX",
+      "journal": "J. Chem. Theory Comput., 19, asap",
       "year": "2023",
       "doi": "10.1021/acs.jctc.3c00240",
       "url": "https://pubs.acs.org/doi/10.1021/acs.jctc.3c00240"
