@@ -60,7 +60,7 @@
       "url": "https://arxiv.org/abs/2306.04331"
     },
     {
-      "authors": "D. Nagel, and G. Stock",
+      "authors": "D. Nagel and G. Stock",
       "title": "msmhelper: A Python package for Markov state modeling of protein dynamics",
       "journal": "J. Open Source Soft., 8, 5339",
       "year": "2023",
@@ -70,7 +70,7 @@
     {
       "authors": "D. Nagel, S. Sartore, and G. Stock",
       "title": "Selecting Features for Markov Modeling: A Case Study on HP35",
-      "journal": "J. Chem. Theory Comput., 19, asap",
+      "journal": "J. Chem. Theory Comput., 19, 3391",
       "year": "2023",
       "doi": "10.1021/acs.jctc.3c00240",
       "url": "https://pubs.acs.org/doi/10.1021/acs.jctc.3c00240"
