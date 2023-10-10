@@ -3,7 +3,7 @@
     {
       "title": "prettypyplot",
       "contribution": "creator",
-      "description": "a wrapper for creating easily beatiful matplotlib figures",
+      "description": "a wrapper for creating easily beautiful matplotlib figures",
       "url": "https://braniii.gitlab.io/prettypyplot",
       "hashtag": "#python #matplotlib"
     },
@@ -24,7 +24,7 @@
     {
       "title": "ameixa",
       "contribution": "maintainer",
-      "description": "a minimmalistic Material Design inspired icon pack for android",
+      "description": "a minimalistic Material Design inspired icon pack for android",
       "url": "https://xphnx.gitlab.io/ameixa/",
       "hashtag": "#icontheme #android"
     },
@@ -54,10 +54,10 @@
     {
       "authors": "D. Nagel, S. Sartore, and G. Stock",
       "title": "Towards a Benchmark for Markov State Models: The Folding of HP35",
-      "journal": "arXiv",
+      "journal": "J. Phys. Chem. Lett, 14, 31",
       "year": "2023",
-      "doi": "2306.04331",
-      "url": "https://arxiv.org/abs/2306.04331"
+      "doi": "10.1021/acs.jpclett.3c01561",
+      "url": "https://pubs.acs.org/doi/10.1021/acs.jpclett.3c01561"
     },
     {
       "authors": "D. Nagel and G. Stock",
