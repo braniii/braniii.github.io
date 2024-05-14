@@ -1,10 +1,17 @@
 {
   "software": [
     {
+      "title": "trale",
+      "contribution": "creator",
+      "description": "a simple body weight diary app respecting your privacy",
+      "url": "https://github.com/QuantumPhysique/trale/",
+      "hashtag": "#flutter #android"
+    },
+    {
       "title": "prettypyplot",
       "contribution": "creator",
       "description": "a wrapper for creating easily beautiful matplotlib figures",
-      "url": "https://braniii.gitlab.io/prettypyplot",
+      "url": "https://braniii.github.io/prettypyplot",
       "hashtag": "#python #matplotlib"
     },
     {
@@ -22,35 +29,22 @@
       "hashtag": "#python #feature-selection #ml"
     },
     {
-      "title": "ameixa",
-      "contribution": "maintainer",
-      "description": "a minimalistic Material Design inspired icon pack for android",
-      "url": "https://xphnx.gitlab.io/ameixa/",
-      "hashtag": "#icontheme #android"
-    },
-    {
-      "title": "dcTMD",
-      "contribution": "co-creator",
-      "description": "analysis framework of dissipation-corrected targeted molecular dynamics (dcTMD) simulations",
-      "url": "https://moldyn.github.io/dcTMD",
-      "hashtag": "#python #targetedMD #dcTMD"
-    },
-    {
-      "title": "MSMPathfinder",
+      "title": "NorMI",
       "contribution": "creator",
-      "description": "a cpp proof-of-concept implementation of pathway-analysis of Markov state models",
-      "url": "https://github.com/moldyn/MSMPathfinder",
-      "hashtag": "#cpp #dataanalysis"
-    },
-    {
-      "title": "robust density clustering",
-      "contribution": "maintainer",
-      "description": "a cpp framework providing an density-based clustering algorithm including helpful tools",
-      "url": "https://moldyn.github.io/Clustering",
-      "hashtag": "#cpp #clustering"
+      "description": "a generalized Kraskov estimator for estimating normalized MI",
+      "url": "https://github.com/moldyn/NorMI",
+      "hashtag": "#python #dataanalysis #ml"
     }
   ],
   "articles": [
+    {
+      "authors": "D. Nagel, G. Diez, and G. Stock",
+      "title": "Accurate estimation of the normalized mutual information of multidimensional data",
+      "journal": "arXiv",
+      "year": "2024",
+      "doi": "10.48550/arXiv.2405.04980",
+      "url": "https://arxiv.org/abs/2405.04980"
+    },
     {
       "authors": "D. Nagel, S. Sartore, and G. Stock",
       "title": "Towards a Benchmark for Markov State Models: The Folding of HP35",
