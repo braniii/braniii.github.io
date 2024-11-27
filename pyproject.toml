@@ -1,0 +1,8 @@
+[project]
+name = "braniii-github-io"
+version = "0.1.0"
+description = "Personal website of braniii"
+requires-python = ">=3.11"
+dependencies = [
+    "jinja2>=3.1.4",
+]
