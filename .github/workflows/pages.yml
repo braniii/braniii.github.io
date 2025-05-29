@@ -23,19 +23,19 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
-      - uses: abatilo/actions-poetry@v3
+          python-version-file: ".python-version"
       - uses: actions/setup-node@v4
         with:
           node-version: 16
       - run: |
-           poetry install
+           uv sync
            cd styles/
            yarn install
            cd ..
-           poetry run python compile.py full
+           uv run python compile.py full
            mv build public
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
