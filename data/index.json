@@ -1,6 +1,13 @@
 {
   "software": [
     {
+      "title": "fpsl",
+      "contribution": "creator",
+      "description": "efficient free-energy estimation under periodic boundary conditions",
+      "url": "https://github.com/BereauLab/fokker-planck-score-learning/",
+      "hashtag": "#python #jax #diffusion-model #ml"
+    },
+    {
       "title": "trale",
       "contribution": "creator",
       "description": "a simple body weight diary app respecting your privacy",
@@ -37,6 +44,14 @@
     }
   ],
   "articles": [
+    {
+      "authors": "D. Nagel and T. Bereau",
+      "title": "Fokker-Planck Score Learning: Efficient Free-Energy Estimation Under Periodic Boundary Conditions",
+      "journal": "arXiv",
+      "year": "2025",
+      "doi": "10.48550/arXiv.2506.15653",
+      "url": "https://arxiv.org/abs/2506.15653"
+    },
     {
       "authors": "D. Nagel, G. Diez, and G. Stock",
       "title": "Accurate estimation of the normalized mutual information of multidimensional data",
