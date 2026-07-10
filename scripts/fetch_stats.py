@@ -23,6 +23,7 @@ INDEX = ROOT / "src" / "data" / "index.json"
 OUT = ROOT / "src" / "data" / "stats.json"
 SCHOLAR_ID = os.environ.get("SCHOLAR_ID", "3Pz_4wwAAAAJ")
 PEPY_KEY = os.environ.get("PEPY_API_KEY")
+GH_TOKEN = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
 
 
 def get_json(url: str, headers: dict | None = None, timeout: int = 30):
@@ -58,6 +59,18 @@ def pypi_downloads(name: str) -> int | None:
         return None
 
 
+def github_stars(repo: str) -> int | None:
+    headers = {"User-Agent": "braniii-stats", "Accept": "application/vnd.github+json"}
+    if GH_TOKEN:
+        headers["Authorization"] = f"Bearer {GH_TOKEN}"
+    try:
+        d = get_json(f"https://api.github.com/repos/{repo}", headers=headers)
+        return int(d.get("stargazers_count"))
+    except Exception as e:  # noqa: BLE001
+        print(f"  stars {repo}: {e}", file=sys.stderr)
+        return None
+
+
 def _norm(title: str) -> str:
     return "".join(c for c in title.lower() if c.isalnum())
 
@@ -90,13 +103,19 @@ def main() -> int:
         except Exception:  # noqa: BLE001
             prev = {}
     prev_pkgs = prev.get("packages", {})
+    prev_stars = prev.get("stars", {})
 
     packages: dict[str, dict] = {}
+    stars: dict[str, int] = {}
     for section in ("projects", "research"):
         for e in index.get(section, []):
+            title = e["title"]
+            if "github" in e:
+                n = github_stars(e["github"])
+                stars[title] = n if n is not None else prev_stars.get(title)
+                print(f"  stars {title}: {stars[title]}")
             if "pypi" not in e and "conda" not in e:
                 continue
-            title = e["title"]
             old = prev_pkgs.get(title, {})
             entry: dict[str, int | None] = {}
             if "pypi" in e:
@@ -127,15 +146,24 @@ def main() -> int:
         print(f"  cite {doi}: {articles[doi]}")
 
     total_downloads = sum(p.get("total", 0) for p in packages.values())
+    total_stars = sum(v for v in stars.values() if v)
 
     out = {
         "updated": date.today().isoformat(),
-        "totals": {"downloads": total_downloads, "citations": citations},
+        "totals": {
+            "downloads": total_downloads,
+            "citations": citations,
+            "stars": total_stars,
+        },
         "packages": packages,
+        "stars": stars,
         "articles": articles,
     }
     OUT.write_text(json.dumps(out, indent=2) + "\n")
-    print(f"wrote {OUT.relative_to(ROOT)}: downloads={total_downloads} citations={citations}")
+    print(
+        f"wrote {OUT.relative_to(ROOT)}: downloads={total_downloads} "
+        f"stars={total_stars} citations={citations}"
+    )
     return 0
 
 

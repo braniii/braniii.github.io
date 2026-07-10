@@ -2,7 +2,8 @@
   "updated": "2026-07-10",
   "totals": {
     "downloads": 53811,
-    "citations": 214
+    "citations": 214,
+    "stars": 323
   },
   "packages": {
     "prettypyplot": {
@@ -34,6 +35,16 @@
       "conda": 5093,
       "total": 5093
     }
+  },
+  "stars": {
+    "trale": 184,
+    "prettypyplot": 11,
+    "fontawesome": 38,
+    "Fokker-Planck Score Learning": 10,
+    "msmhelper": 11,
+    "dcTMD": 17,
+    "MoSAIC": 29,
+    "NorMI": 23
   },
   "articles": {
     "10.1063/5.0327436": 1,

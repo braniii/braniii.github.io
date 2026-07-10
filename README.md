@@ -36,6 +36,8 @@ read from `src/data/stats.json`, refreshed weekly by the `Update stats` workflow
 runs `scripts/fetch_stats.py`, commits the updated JSON, and redeploys. Sources:
 
 - **conda-forge downloads** — `api.anaconda.org`, no credentials needed.
+- **GitHub stars** — GitHub REST API; uses the workflow's built-in `GITHUB_TOKEN`
+  for a higher rate limit, driven by the `github` (`owner/repo`) key per entry.
 - **Google Scholar citations** — scraped via `scholarly`, no credentials.
 - **PyPI downloads** — [pepy.tech](https://pepy.tech), which needs a free API key
   (PyPI has no lifetime-download API). Without it, download totals fall back to

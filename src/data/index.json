@@ -6,7 +6,8 @@
       "description": "A privacy-first body-weight diary for Android. It tracks your weight over time with smart trend smoothing and gap interpolation, wrapped in a clean Material design. Your data never leaves the device — no accounts, no tracking, no cloud.",
       "url": "https://github.com/QuantumPhysique/trale/",
       "hashtag": "#flutter #dart #android #material-design #privacy #open-source",
-      "image": "trale"
+      "image": "trale",
+      "github": "QuantumPhysique/trale"
     },
     {
       "title": "prettypyplot",
@@ -16,14 +17,16 @@
       "hashtag": "#python #matplotlib #dataviz #plotting #open-source",
       "logo": "pplt",
       "pypi": "prettypyplot",
-      "conda": "prettypyplot"
+      "conda": "prettypyplot",
+      "github": "braniii/prettypyplot"
     },
     {
       "title": "fontawesome",
       "contribution": "creator",
       "description": "A LaTeX package giving you access to the full Font Awesome 7 (and 6) icon sets directly in your documents, presentations, and posters. Published on CTAN and compatible with PDFLaTeX, XeLaTeX, and LuaLaTeX, in both regular and solid styles.",
       "url": "https://github.com/braniii/fontawesome",
-      "hashtag": "#latex #ctan #fontawesome #typesetting #icons #open-source"
+      "hashtag": "#latex #ctan #fontawesome #typesetting #icons #open-source",
+      "github": "braniii/fontawesome"
     }
   ],
   "research": [
@@ -34,7 +37,8 @@
       "url": "https://github.com/BereauLab/fokker-planck-score-learning/",
       "hashtag": "#python #jax #diffusion-model #machine-learning #free-energy #statistical-physics",
       "logo": "fpsl",
-      "pypi": "fpsl"
+      "pypi": "fpsl",
+      "github": "BereauLab/fokker-planck-score-learning"
     },
     {
       "title": "msmhelper",
@@ -43,7 +47,8 @@
       "url": "https://moldyn.github.io/msmhelper",
       "hashtag": "#python #numba #markov-state-models #molecular-dynamics #data-analysis",
       "pypi": "msmhelper",
-      "conda": "msmhelper"
+      "conda": "msmhelper",
+      "github": "moldyn/msmhelper"
     },
     {
       "title": "dcTMD",
@@ -53,7 +58,8 @@
       "hashtag": "#python #molecular-dynamics #free-energy #nonequilibrium #data-analysis",
       "logo": "dctmd",
       "pypi": "dctmd",
-      "conda": "dctmd"
+      "conda": "dctmd",
+      "github": "moldyn/dcTMD"
     },
     {
       "title": "MoSAIC",
@@ -63,7 +69,8 @@
       "hashtag": "#python #feature-selection #unsupervised-learning #clustering #data-analysis",
       "logo": "mosaic",
       "pypi": "mosaic-clustering",
-      "conda": "mosaic-clustering"
+      "conda": "mosaic-clustering",
+      "github": "moldyn/MoSAIC"
     },
     {
       "title": "NorMI",
@@ -73,7 +80,8 @@
       "hashtag": "#python #information-theory #mutual-information #statistics #data-analysis",
       "logo": "normi",
       "pypi": "normi",
-      "conda": "normi"
+      "conda": "normi",
+      "github": "moldyn/NorMI"
     }
   ],
   "articles": [

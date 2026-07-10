@@ -24,9 +24,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Fetch download & citation stats
+      - name: Fetch download, star & citation stats
         env:
           PEPY_API_KEY: ${{ secrets.PEPY_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SCHOLAR_ID: "3Pz_4wwAAAAJ"
         run: |
           pip install scholarly
