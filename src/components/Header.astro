@@ -1,3 +1,17 @@
+---
+import stats from '../data/stats.json';
+
+// 53811 -> "53.8k", 1200000 -> "1.2M"
+const fmt = (n: number): string =>
+  n >= 1e6
+    ? (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M'
+    : n >= 1e3
+      ? (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'k'
+      : String(n);
+
+const { downloads, citations } = stats.totals;
+---
+
 <header class="pt-10 sm:pt-14 pb-4 text-center flex flex-col items-center gap-4">
   <h1
     class="split-hover glass-text relative my-3 px-4 text-6xl sm:text-7xl select-none"
@@ -60,6 +74,36 @@
       </a>
     </div>
   </div>
+
+  {
+    (downloads > 0 || citations) && (
+      <div class="flex flex-wrap items-center justify-center gap-2 text-sm">
+        {downloads > 0 && (
+          <span
+            title="Total package downloads on PyPI and conda-forge"
+            class="inline-flex items-center gap-1.5 rounded-full bg-white/40 dark:bg-white/10 border border-white/60 dark:border-white/15 px-3 py-1 text-slate-700 dark:text-slate-200"
+          >
+            <svg class="w-4 h-4 text-secondary dark:text-secondary-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+            </svg>
+            <strong class="font-semibold">{fmt(downloads)}</strong> downloads
+          </span>
+        )}
+        {citations && (
+          <span
+            title="Total citations (Google Scholar)"
+            class="inline-flex items-center gap-1.5 rounded-full bg-white/40 dark:bg-white/10 border border-white/60 dark:border-white/15 px-3 py-1 text-slate-700 dark:text-slate-200"
+          >
+            <svg class="w-4 h-4 text-secondary dark:text-secondary-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 10L12 5 2 10l10 5 10-5z" />
+              <path d="M6 12v5c0 1 2.7 3 6 3s6-2 6-3v-5" />
+            </svg>
+            <strong class="font-semibold">{fmt(citations)}</strong> citations
+          </span>
+        )}
+      </div>
+    )
+  }
 </header>
 
 <script>

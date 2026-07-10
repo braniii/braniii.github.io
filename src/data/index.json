@@ -14,7 +14,9 @@
       "description": "A lightweight wrapper around matplotlib that makes publication-quality figures the default. Sensible color cycles, consistent styling, and one-line helpers take the fiddling out of plotting so you can focus on the data rather than the axes.",
       "url": "https://braniii.github.io/prettypyplot",
       "hashtag": "#python #matplotlib #dataviz #plotting #open-source",
-      "logo": "pplt"
+      "logo": "pplt",
+      "pypi": "prettypyplot",
+      "conda": "prettypyplot"
     },
     {
       "title": "fontawesome",
@@ -26,19 +28,22 @@
   ],
   "research": [
     {
-      "title": "fpsl",
+      "title": "Fokker-Planck Score Learning",
       "contribution": "creator",
       "description": "A machine-learning method for efficient free-energy estimation under periodic boundary conditions. It trains a diffusion-style score model on the Fokker-Planck dynamics, delivering accurate estimates in regimes where conventional approaches struggle.",
       "url": "https://github.com/BereauLab/fokker-planck-score-learning/",
       "hashtag": "#python #jax #diffusion-model #machine-learning #free-energy #statistical-physics",
-      "logo": "fpsl"
+      "logo": "fpsl",
+      "pypi": "fpsl"
     },
     {
       "title": "msmhelper",
       "contribution": "creator",
       "description": "A time-series analysis toolkit for building and validating Markov state models of molecular dynamics. It offers fast, Numba-accelerated routines for clustering, dynamical coring, and pathway analysis of long trajectories.",
       "url": "https://moldyn.github.io/msmhelper",
-      "hashtag": "#python #numba #markov-state-models #molecular-dynamics #data-analysis"
+      "hashtag": "#python #numba #markov-state-models #molecular-dynamics #data-analysis",
+      "pypi": "msmhelper",
+      "conda": "msmhelper"
     },
     {
       "title": "dcTMD",
@@ -46,7 +51,9 @@
       "description": "An analysis framework for dissipation-corrected targeted molecular dynamics. It reconstructs free-energy profiles and friction factors along a pulled reaction coordinate from nonequilibrium pulling simulations.",
       "url": "https://github.com/moldyn/dcTMD",
       "hashtag": "#python #molecular-dynamics #free-energy #nonequilibrium #data-analysis",
-      "logo": "dctmd"
+      "logo": "dctmd",
+      "pypi": "dctmd",
+      "conda": "dctmd"
     },
     {
       "title": "MoSAIC",
@@ -54,7 +61,9 @@
       "description": "A correlation-based feature selection method that groups collective coordinates by their mutual dependencies. It uncovers the essential degrees of freedom in high-dimensional data fully unsupervised, without prior assumptions.",
       "url": "https://github.com/moldyn/MoSAIC",
       "hashtag": "#python #feature-selection #unsupervised-learning #clustering #data-analysis",
-      "logo": "mosaic"
+      "logo": "mosaic",
+      "pypi": "mosaic-clustering",
+      "conda": "mosaic-clustering"
     },
     {
       "title": "NorMI",
@@ -62,7 +71,9 @@
       "description": "A generalized Kraskov estimator for the normalized mutual information of multidimensional data. It quantifies nonlinear dependencies robustly, staying accurate even in high dimensions and with limited samples.",
       "url": "https://github.com/moldyn/NorMI",
       "hashtag": "#python #information-theory #mutual-information #statistics #data-analysis",
-      "logo": "normi"
+      "logo": "normi",
+      "pypi": "normi",
+      "conda": "normi"
     }
   ],
   "articles": [
@@ -100,7 +111,7 @@
     },
     {
       "authors": "D. Nagel, S. Sartore, and G. Stock",
-      "title": "Towards a Benchmark for Markov State Models: The Folding of HP35",
+      "title": "Toward a Benchmark for Markov State Models: The Folding of HP35",
       "journal": "J. Phys. Chem. Lett, 14, 31",
       "year": "2023",
       "doi": "10.1021/acs.jpclett.3c01561",

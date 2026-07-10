@@ -1,0 +1,50 @@
+{
+  "updated": "2026-07-10",
+  "totals": {
+    "downloads": 53811,
+    "citations": 214
+  },
+  "packages": {
+    "prettypyplot": {
+      "pypi": null,
+      "conda": 10375,
+      "total": 10375
+    },
+    "Fokker-Planck Score Learning": {
+      "pypi": null,
+      "total": 0
+    },
+    "msmhelper": {
+      "pypi": null,
+      "conda": 19760,
+      "total": 19760
+    },
+    "dcTMD": {
+      "pypi": null,
+      "conda": 3057,
+      "total": 3057
+    },
+    "MoSAIC": {
+      "pypi": null,
+      "conda": 15526,
+      "total": 15526
+    },
+    "NorMI": {
+      "pypi": null,
+      "conda": 5093,
+      "total": 5093
+    }
+  },
+  "articles": {
+    "10.1063/5.0327436": 1,
+    "10.1021/acs.jpclett.6c00341": 0,
+    "10.1021/acs.jpcb.5c04579": 3,
+    "10.1063/5.0217960": 31,
+    "10.1021/acs.jpclett.3c01561": 23,
+    "10.21105/joss.05339": 8,
+    "10.1021/acs.jctc.3c00240": 30,
+    "10.1021/acs.jctc.2c00337": 61,
+    "10.1021/acs.jctc.0c00774": 20,
+    "10.1063/1.5081767": 37
+  }
+}

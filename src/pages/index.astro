@@ -8,11 +8,28 @@ import mosaic from '../assets/mosaic.svg';
 import normi from '../assets/normi.svg';
 import dctmd from '../assets/dctmd.svg';
 import fpsl from '../assets/fpsl.svg';
+import stats from '../data/stats.json';
 
 // Full-width hero teasers referenced by the `image` key in index.json
 const teasers: Record<string, ImageMetadata> = { trale: traleTeaser };
 // Small logos referenced by the `logo` key; shown as a side thumbnail, not a hero
 const logos: Record<string, ImageMetadata> = { pplt, mosaic, normi, dctmd, fpsl };
+
+// Per-package download totals and per-paper citation counts (see stats.json,
+// refreshed weekly by scripts/fetch_stats.py via the stats workflow).
+const pkgStats: Record<string, { total?: number }> = stats.packages ?? {};
+const articleCites: Record<string, number> = stats.articles ?? {};
+// 12345 -> "12.3k"
+const fmt = (n: number): string =>
+  n >= 1e6
+    ? (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M'
+    : n >= 1e3
+      ? (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'k'
+      : String(n);
+// Publications default to most-cited-first; a toggle re-sorts by year client-side.
+const pubs = articles
+  .map((a) => ({ ...a, citations: articleCites[a.doi] ?? 0 }))
+  .sort((x, y) => y.citations - x.citations);
 ---
 
 <Layout>
@@ -91,6 +108,17 @@ const logos: Record<string, ImageMetadata> = { pplt, mosaic, normi, dctmd, fpsl 
                       </svg>
                     </div>
                     <span class="text-sm text-slate-600 dark:text-slate-400 ml-1.5 italic">#{pr.contribution}</span>
+                    {pkgStats[pr.title]?.total ? (
+                      <span
+                        title="Downloads on PyPI and conda-forge"
+                        class="ml-2 shrink-0 inline-flex items-center gap-1 rounded-full bg-secondary/5 dark:bg-secondary/10 border border-secondary/15 dark:border-secondary/20 px-2.5 py-0.5 text-xs font-semibold text-secondary dark:text-secondary-200"
+                      >
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+                        </svg>
+                        {fmt(pkgStats[pr.title].total!)}
+                      </span>
+                    ) : null}
                   </div>
                   <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">{pr.description}</p>
                   <p class="text-sm text-secondary dark:text-secondary-300 mt-1">{pr.hashtag}</p>
@@ -116,17 +144,55 @@ const logos: Record<string, ImageMetadata> = { pplt, mosaic, normi, dctmd, fpsl 
           > for an up-to-date list.</span
         >
       </div>
-      <div class="flex flex-col gap-1.5 my-4">
+      <div class="flex justify-center mt-3">
+        <div
+          role="group"
+          aria-label="Sort publications"
+          class="inline-flex gap-1 p-1 rounded-xl bg-white/30 dark:bg-white/5 border border-white/50 dark:border-white/10"
+        >
+          <button
+            type="button"
+            data-sort="citations"
+            aria-pressed="true"
+            class="px-3 py-1 rounded-lg text-xs font-medium uppercase tracking-wide cursor-pointer transition duration-300 text-slate-500 dark:text-slate-400 aria-pressed:bg-white/80 dark:aria-pressed:bg-white/15 aria-pressed:text-slate-900 dark:aria-pressed:text-white aria-pressed:shadow"
+          >
+            Most cited
+          </button>
+          <button
+            type="button"
+            data-sort="year"
+            aria-pressed="false"
+            class="px-3 py-1 rounded-lg text-xs font-medium uppercase tracking-wide cursor-pointer transition duration-300 text-slate-500 dark:text-slate-400 aria-pressed:bg-white/80 dark:aria-pressed:bg-white/15 aria-pressed:text-slate-900 dark:aria-pressed:text-white aria-pressed:shadow"
+          >
+            Newest
+          </button>
+        </div>
+      </div>
+      <div id="publications-list" class="flex flex-col gap-1.5 my-4">
         {
-          articles.map((at) => (
-          <div class="px-4 py-3 rounded-lg first:rounded-t-3xl last:rounded-b-3xl border border-white/60 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur-md shadow-sm hover:bg-white/60 dark:hover:bg-white/10 hover:shadow-md transition duration-300 text-slate-700 dark:text-slate-200">
-            <span class="text-sm">
+          pubs.map((at) => (
+          <div
+            data-citations={at.citations}
+            data-year={parseInt(at.year)}
+            class="flex items-center gap-3 px-4 py-3 rounded-lg first:rounded-t-3xl last:rounded-b-3xl border border-white/60 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur-md shadow-sm hover:bg-white/60 dark:hover:bg-white/10 hover:shadow-md transition duration-300 text-slate-700 dark:text-slate-200"
+          >
+            <span class="text-sm flex-1 min-w-0">
               <Fragment set:html={at.authors.replace(/D\. Nagel/g, '<strong class="font-bold">DN</strong>')} />,{' '}
               <a href={at.url} target="_blank">
                 <span class="text-secondary dark:text-secondary-300 italic">{at.title}</span>
               </a>
               , {at.journal}, {at.year}
-              </span>
+            </span>
+            <span
+              title="Citations (Google Scholar)"
+              class="shrink-0 inline-flex items-center gap-1 rounded-full bg-secondary/5 dark:bg-secondary/10 border border-secondary/15 dark:border-secondary/20 px-2.5 py-0.5 text-xs font-semibold text-secondary dark:text-secondary-200"
+            >
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 10L12 5 2 10l10 5 10-5z" />
+                <path d="M6 12v5c0 1 2.7 3 6 3s6-2 6-3v-5" />
+              </svg>
+              {at.citations}
+            </span>
             </div>
           ))
         }
@@ -145,7 +211,7 @@ const logos: Record<string, ImageMetadata> = { pplt, mosaic, normi, dctmd, fpsl 
           research.map((sw) => (
           <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 px-4 py-3 rounded-lg first:rounded-t-3xl last:rounded-b-3xl border border-white/60 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur-md shadow-sm hover:bg-white/60 dark:hover:bg-white/10 hover:shadow-md transition duration-300 text-slate-700 dark:text-slate-200">
             <div class="order-2 sm:order-1 flex flex-col flex-1 min-w-0">
-              <div class="flex mb-2">
+              <div class="flex items-center mb-2">
                 <a class="flex items-center" href={sw.url} target="_blank">
                   <span class="text-sm">{sw.title}</span>
                   <div class="w-3.5 h-3.5 ml-1.5 text-secondary dark:text-secondary-300">
@@ -156,6 +222,17 @@ const logos: Record<string, ImageMetadata> = { pplt, mosaic, normi, dctmd, fpsl 
                   </div>
                   <span class="text-sm text-slate-600 dark:text-slate-400 ml-1.5 italic">#{sw.contribution}</span>
                 </a>
+                {pkgStats[sw.title]?.total ? (
+                  <span
+                    title="Downloads on PyPI and conda-forge"
+                    class="ml-2 shrink-0 inline-flex items-center gap-1 rounded-full bg-secondary/5 dark:bg-secondary/10 border border-secondary/15 dark:border-secondary/20 px-2.5 py-0.5 text-xs font-semibold text-secondary dark:text-secondary-200"
+                  >
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+                    </svg>
+                    {fmt(pkgStats[sw.title].total!)}
+                  </span>
+                ) : null}
               </div>
               <div class="flex text-sm text-slate-600 dark:text-slate-300">
                 <span>{sw.description}</span>
@@ -216,4 +293,20 @@ const logos: Record<string, ImageMetadata> = { pplt, mosaic, normi, dctmd, fpsl 
   const hash = location.hash.slice(1);
   const initial = document.getElementById('tab-' + (hash === 'software' ? 'research' : hash));
   if (initial) activate(initial as HTMLButtonElement, false);
+
+  // Publications sort toggle: reorder the cards by citations or year in place.
+  const pubList = document.getElementById('publications-list');
+  if (pubList) {
+    const sortButtons = [...document.querySelectorAll<HTMLButtonElement>('[data-sort]')];
+    const num = (el: Element, key: string) => Number((el as HTMLElement).dataset[key] || 0);
+    sortButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.sort === 'year' ? 'year' : 'citations';
+        [...pubList.children]
+          .sort((a, b) => num(b, key) - num(a, key))
+          .forEach((el) => pubList.appendChild(el));
+        sortButtons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      });
+    });
+  }
 </script>
