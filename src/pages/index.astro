@@ -13,22 +13,43 @@ import { articles, software } from '../data/index.json';
     </div>
   </div>
 
-  <!-- Publications -->
+  <!-- Publications / Software tabs -->
   <div class="my-6">
-    <div class="flex my-6 justify-center">
-      <span class="text-xl font-medium uppercase">publications 📚</span>
-    </div>
-    <div class="text-base text-slate-600 text-center italic">
-      <span class="text-base"
-        >You can also check out my <a
-          href="https://scholar.google.com/citations?user=3Pz_4wwAAAAJ"
-          target="_blank"><span class="text-greenish">google scholar</span></a
-        > for an up-to-date list.</span
+    <div class="flex my-6 justify-center gap-8" role="tablist" aria-label="Publications and software">
+      <button
+        type="button"
+        role="tab"
+        id="tab-publications"
+        aria-controls="panel-publications"
+        aria-selected="true"
+        class="text-xl font-medium uppercase cursor-pointer pb-1 border-b-2 transition-colors duration-300 border-transparent text-slate-400 not-aria-selected:hover:text-slate-600 aria-selected:border-greenish aria-selected:text-black"
       >
+        publications 📚
+      </button>
+      <button
+        type="button"
+        role="tab"
+        id="tab-software"
+        aria-controls="panel-software"
+        aria-selected="false"
+        class="text-xl font-medium uppercase cursor-pointer pb-1 border-b-2 transition-colors duration-300 border-transparent text-slate-400 not-aria-selected:hover:text-slate-600 aria-selected:border-greenish aria-selected:text-black"
+      >
+        software 💿
+      </button>
     </div>
-    <div>
-      {
-        articles.map((at) => (
+
+    <section id="panel-publications" role="tabpanel" aria-labelledby="tab-publications">
+      <div class="text-base text-slate-600 text-center italic">
+        <span class="text-base"
+          >You can also check out my <a
+            href="https://scholar.google.com/citations?user=3Pz_4wwAAAAJ"
+            target="_blank"><span class="text-greenish">google scholar</span></a
+          > for an up-to-date list.</span
+        >
+      </div>
+      <div>
+        {
+          articles.map((at) => (
           <div class="px-4 py-3 my-3 border-l-4 border-greenish rounded-sm shadow-md hover:shadow-inner bg-slate-100 transition-shadow duration-300 rounded-r-xl">
             <span class="text-sm">
               {at.authors},{' '}
@@ -36,25 +57,23 @@ import { articles, software } from '../data/index.json';
                 <span class="text-greenish italic">{at.title}</span>
               </a>
               , {at.journal}, {at.year}
-            </span>
-          </div>
-        ))
-      }
-    </div>
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </section>
 
-    <!-- Software -->
-    <div class="flex my-6 justify-center">
-      <span class="text-xl font-medium uppercase">software 💿</span>
-    </div>
-    <div class="text-base text-slate-600 text-center italic">
-      <span class="text-base"
-        >The following list is not complete. Please refer to my Github/Gitlab pages for more
-        details.</span
-      >
-    </div>
-    <div>
-      {
-        software.map((sw) => (
+    <section id="panel-software" role="tabpanel" aria-labelledby="tab-software" hidden>
+      <div class="text-base text-slate-600 text-center italic">
+        <span class="text-base"
+          >The following list is not complete. Please refer to my Github/Gitlab pages for more
+          details.</span
+        >
+      </div>
+      <div>
+        {
+          software.map((sw) => (
           <div class="flex flex-col px-4 py-3 my-3 border-l-4 border-greenish rounded-sm shadow-md hover:shadow-inner bg-slate-100 transition-shadow duration-300 rounded-r-xl">
             <div class="flex mb-2">
               <a class="flex items-center" href={sw.url} target="_blank">
@@ -77,6 +96,51 @@ import { articles, software } from '../data/index.json';
           </div>
         ))
       }
-    </div>
+      </div>
+    </section>
   </div>
+
+  <!-- With JS disabled, show both panels instead of an unreachable tab -->
+  <noscript>
+    <style>
+      [role='tabpanel'][hidden] {
+        display: block;
+      }
+      [role='tab'] {
+        border-color: var(--color-greenish);
+        color: var(--color-black);
+      }
+    </style>
+  </noscript>
 </Layout>
+
+<script>
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+
+  const activate = (tab: HTMLButtonElement, updateHash = true) => {
+    for (const t of tabs) {
+      const selected = t === tab;
+      t.setAttribute('aria-selected', String(selected));
+      const panel = document.getElementById(t.getAttribute('aria-controls')!);
+      if (panel) panel.hidden = !selected;
+    }
+    if (updateHash) {
+      history.replaceState(null, '', '#' + tab.id.replace('tab-', ''));
+    }
+  };
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => activate(tab));
+    tab.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+      const step = event.key === 'ArrowRight' ? 1 : tabs.length - 1;
+      const next = tabs[(i + step) % tabs.length];
+      next.focus();
+      activate(next);
+    });
+  });
+
+  // Support deep links like /#software
+  const initial = document.getElementById('tab-' + location.hash.slice(1));
+  if (initial) activate(initial as HTMLButtonElement, false);
+</script>
