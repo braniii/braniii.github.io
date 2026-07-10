@@ -1,5 +1,273 @@
 @import "tailwindcss";
+@import "@fontsource/baloo-2/800.css";
+
+/* Dark mode is toggled by a `.dark` class on <html> (set by the inline script
+   in Layout.astro from the stored light/dark/auto choice), rather than by the
+   media query, so the manual toggle can override the system preference. */
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-greenish: #4d908e;
+  /* Source colors — change these two to re-theme the entire page. */
+  --color-primary: #FFDBCE;
+  /*#4ac483;*/
+  --color-secondary: #00658B;
+  /*#c54b8c;*/
+
+  /* Full 50–900 scales derived from the source colors: 50–400 are tints
+     (mixed with white), 500 is the source color itself, 600–900 are shades
+     (mixed with black). Resolved in the browser via color-mix, so they
+     follow the source colors. */
+  --color-primary-50: color-mix(in srgb, var(--color-primary) 5%, white);
+  --color-primary-100: color-mix(in srgb, var(--color-primary) 15%, white);
+  --color-primary-200: color-mix(in srgb, var(--color-primary) 30%, white);
+  --color-primary-300: color-mix(in srgb, var(--color-primary) 50%, white);
+  --color-primary-400: color-mix(in srgb, var(--color-primary) 75%, white);
+  --color-primary-500: var(--color-primary);
+  --color-primary-600: color-mix(in srgb, var(--color-primary) 80%, black);
+  --color-primary-700: color-mix(in srgb, var(--color-primary) 60%, black);
+  --color-primary-800: color-mix(in srgb, var(--color-primary) 45%, black);
+  --color-primary-900: color-mix(in srgb, var(--color-primary) 30%, black);
+  --color-primary-950: color-mix(in srgb, var(--color-primary) 2%, black);
+
+  --color-secondary-50: color-mix(in srgb, var(--color-secondary) 5%, white);
+  --color-secondary-100: color-mix(in srgb, var(--color-secondary) 15%, white);
+  --color-secondary-200: color-mix(in srgb, var(--color-secondary) 30%, white);
+  --color-secondary-300: color-mix(in srgb, var(--color-secondary) 50%, white);
+  --color-secondary-400: color-mix(in srgb, var(--color-secondary) 75%, white);
+  --color-secondary-500: var(--color-secondary);
+  --color-secondary-600: color-mix(in srgb, var(--color-secondary) 80%, black);
+  --color-secondary-700: color-mix(in srgb, var(--color-secondary) 60%, black);
+  --color-secondary-800: color-mix(in srgb, var(--color-secondary) 45%, black);
+  --color-secondary-900: color-mix(in srgb, var(--color-secondary) 30%, black);
+  --color-secondary-950: color-mix(in srgb, var(--color-secondary) 2%, black);
+}
+
+/* In dark mode the two source colors swap roles — teal becomes the dominant
+   surface color and peach the accent — so the whole page re-themes off these.
+   Kept unlayered so it reliably overrides the @theme :root definitions above. */
+.dark {
+  --color-primary: #00658B;
+  --color-secondary: #FFDBCE;
+}
+
+@layer components {
+
+  /* Coloured-glass display text: translucent secondary fill with a soft
+     top-to-bottom gradient, plus the same white hairline border and soft
+     shadow as the glass containers. The gradient lives on the split halves
+     (background-clip only clips text in the element that holds it). */
+  .glass-text {
+    font-family: 'Baloo 2', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 800;
+    color: transparent;
+    /* White hairline as an outer halo instead of -webkit-text-stroke: the
+       stroke traces the font's internal overlapping contours and litters the
+       glyphs with seam lines. */
+    filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.9)) drop-shadow(0 5px 8px color-mix(in srgb, var(--color-primary-900) 25%, transparent));
+  }
+
+  .glass-text .split-half,
+  .glass-text .sizer {
+    /* Subtle hue gradient: the secondary color rotated ±40° in oklch, so the
+       sheen comes from a temperature shift rather than brightness. All three
+       stops share the same (optionally boosted) chroma so only the hue moves.
+       --sheen-chroma adds chroma for the sweep: 0 keeps the source as-is (the
+       teal accent already has enough), but the low-chroma peach accent in dark
+       mode needs a boost or the hue rotation is imperceptible. */
+    --sheen-chroma: 0;
+    background: linear-gradient(160deg in oklch,
+        oklch(from var(--color-secondary) l calc(c + var(--sheen-chroma)) calc(h - 40)),
+        oklch(from var(--color-secondary) l calc(c + var(--sheen-chroma)) h),
+        oklch(from var(--color-secondary) l calc(c + var(--sheen-chroma)) calc(h + 40)));
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  /* Dark mode swaps in the pale peach accent, whose chroma is too low for the
+     hue rotation to show — boost it so the sweep is visible again. */
+  .dark .glass-text .split-half,
+  .dark .glass-text .sizer {
+    --sheen-chroma: 0.09;
+  }
+
+  /* Split-reveal heading: at rest only the intact sizer copy is visible (the
+     two clipped halves would show a hairline seam at the cut). On hover the
+     halves crossfade in and slide apart while the name scales open. */
+  /* Un-hover plays in reverse order: the halves slide home first (0.5s) and
+     only then crossfade back to the intact sizer — hence the rest-state
+     delays. The :hover rules reset the delays so opening reacts instantly. */
+  .split-hover .sizer {
+    opacity: 1;
+    transition: opacity 0.2s ease 0.35s;
+  }
+
+  .split-hover:hover .sizer {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .split-half {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition:
+      transform 0.5s ease,
+      opacity 0.2s ease 0.35s;
+  }
+
+  .split-hover:hover .split-half {
+    opacity: 1;
+    transition:
+      transform 0.5s ease,
+      opacity 0.15s ease;
+  }
+
+  /* The clip regions extend past the box (-30% / 130%) so ascenders and
+     descenders that overshoot the em-box are not cut off. */
+  .split-top {
+    clip-path: polygon(0 -30%, 100% -30%, 100% 60%, 0 60%);
+  }
+
+  .split-bottom {
+    clip-path: polygon(0 60%, 100% 60%, 100% 130%, 0 130%);
+  }
+
+  .split-name {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%) scaleY(0);
+    opacity: 0;
+    transition:
+      transform 0.5s ease,
+      opacity 0.3s ease;
+    white-space: nowrap;
+    font-size: 0.2em;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-indent: 0.35em;
+    text-transform: uppercase;
+    font-family:
+      ui-sans-serif,
+      system-ui,
+      sans-serif;
+    color: var(--color-secondary-700);
+    -webkit-text-stroke: 0px transparent;
+    padding: 0.5em 1.1em;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 10px color-mix(in srgb, var(--color-primary-900) 12%, transparent);
+  }
+
+  .split-hover:hover .split-top {
+    transform: translateY(-0.26em);
+  }
+
+  .split-hover:hover .split-bottom {
+    transform: translateY(0.26em);
+  }
+
+  .split-hover:hover .split-name {
+    transform: translate(-50%, -50%) scaleY(1);
+    opacity: 1;
+  }
+
+  /* Touch devices have no hover: the split is scrubbed by scrolling instead.
+     A small script in Header.astro adds .split-scroll and maps the first
+     ~150px of scroll onto --split-progress (0 = closed, 1 = fully open).
+     Without JS the .split-scroll rules never apply and the split stays open. */
+  @media (hover: none) {
+    .split-hover .sizer {
+      opacity: 0;
+    }
+
+    .split-half {
+      opacity: 1;
+    }
+
+    .split-top {
+      transform: translateY(-0.26em);
+    }
+
+    .split-bottom {
+      transform: translateY(0.26em);
+    }
+
+    .split-name {
+      transform: translate(-50%, -50%) scaleY(1);
+      opacity: 1;
+    }
+
+    /* Scroll-driven state: transitions off, the scrubbing is the animation.
+       While it plays the page is pinned: .split-pin is sticky and .split-runway
+       provides the 150px of scroll that drive the scrub, so nothing moves until
+       the name label is fully revealed, then scrolling continues normally.
+       The 150px here must match the divisor in the Header.astro script.
+       The crossfade runs 3x faster than the split so the seamless sizer→halves
+       swap is done before the gap opens (mirrors the hover sequencing). */
+    html.split-scroll .split-pin {
+      position: sticky;
+      top: 0.5rem;
+      /* body padding is 0.5rem below sm, 1rem above */
+    }
+
+    @media (min-width: 640px) {
+      html.split-scroll .split-pin {
+        top: 1rem;
+      }
+    }
+
+    html.split-scroll .split-runway {
+      height: 150px;
+    }
+
+    html.split-scroll .split-hover {
+      --split-progress: 0;
+    }
+
+    html.split-scroll .split-hover .sizer {
+      opacity: calc(1 - var(--split-progress) * 3);
+      transition: none;
+    }
+
+    html.split-scroll .split-hover .split-half {
+      opacity: calc(var(--split-progress) * 3);
+      transition: none;
+    }
+
+    html.split-scroll .split-hover .split-top {
+      transform: translateY(calc(var(--split-progress) * -0.26em));
+    }
+
+    html.split-scroll .split-hover .split-bottom {
+      transform: translateY(calc(var(--split-progress) * 0.26em));
+    }
+
+    html.split-scroll .split-hover .split-name {
+      opacity: var(--split-progress);
+      transform: translate(-50%, -50%) scaleY(var(--split-progress));
+      transition: none;
+    }
+  }
+
+  /* Dark mode: dim the white name pill so it reads as frosted glass on the
+     dark canvas rather than a bright chip (plain CSS, so no dark: variant). */
+  html.dark .split-name {
+    color: var(--color-secondary-200);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* Theme toggle: three icons live in the button; show only the one matching the
+   current light/dark/auto choice (set as data-theme-choice on <html>). */
+.theme-toggle [data-icon] {
+  display: none;
+}
+
+html[data-theme-choice="light"] .theme-toggle [data-icon="light"],
+html[data-theme-choice="dark"] .theme-toggle [data-icon="dark"],
+html[data-theme-choice="auto"] .theme-toggle [data-icon="auto"] {
+  display: block;
 }

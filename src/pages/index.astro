@@ -1,60 +1,129 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import { articles, software } from '../data/index.json';
+import { projects, research, articles } from '../data/index.json';
+import traleTeaser from '../assets/trale.png';
+import pplt from '../assets/pplt.svg';
+import mosaic from '../assets/mosaic.svg';
+import normi from '../assets/normi.svg';
+import dctmd from '../assets/dctmd.svg';
+import fpsl from '../assets/fpsl.svg';
+
+// Full-width hero teasers referenced by the `image` key in index.json
+const teasers: Record<string, ImageMetadata> = { trale: traleTeaser };
+// Small logos referenced by the `logo` key; shown as a side thumbnail, not a hero
+const logos: Record<string, ImageMetadata> = { pplt, mosaic, normi, dctmd, fpsl };
 ---
 
 <Layout>
-  <!-- About -->
-  <div class="mt-2 sm:mt-0 mb-6 sm:mb-12">
-    <div>
-      <div class="text-base text-slate-600 text-justify italic">
-        <span class="inline-block"> Hi there👋 </span>
+  <!-- Projects / Publications / Research code tabs -->
+  <div class="my-6">
+    <div class="flex my-6 justify-center">
+      <div
+        role="tablist"
+        aria-label="Projects, publications and research code"
+        class="flex gap-1 p-1.5 rounded-2xl bg-white/30 dark:bg-white/5 border border-white/50 dark:border-white/10 backdrop-blur-md shadow-inner"
+      >
+        <button
+          type="button"
+          role="tab"
+          id="tab-projects"
+          aria-controls="panel-projects"
+          aria-selected="true"
+          class="px-2.5 sm:px-5 py-2 rounded-lg text-sm sm:text-base font-medium uppercase whitespace-nowrap cursor-pointer transition duration-300 text-slate-500 dark:text-slate-400 not-aria-selected:hover:text-slate-700 dark:not-aria-selected:hover:text-slate-200 not-aria-selected:hover:bg-white/30 dark:not-aria-selected:hover:bg-white/10 aria-selected:bg-white/80 dark:aria-selected:bg-white/15 aria-selected:text-slate-900 dark:aria-selected:text-white aria-selected:shadow-md"
+        >
+          projects
+        </button>
+        <button
+          type="button"
+          role="tab"
+          id="tab-publications"
+          aria-controls="panel-publications"
+          aria-selected="false"
+          class="px-2.5 sm:px-5 py-2 rounded-lg text-sm sm:text-base font-medium uppercase whitespace-nowrap cursor-pointer transition duration-300 text-slate-500 dark:text-slate-400 not-aria-selected:hover:text-slate-700 dark:not-aria-selected:hover:text-slate-200 not-aria-selected:hover:bg-white/30 dark:not-aria-selected:hover:bg-white/10 aria-selected:bg-white/80 dark:aria-selected:bg-white/15 aria-selected:text-slate-900 dark:aria-selected:text-white aria-selected:shadow-md"
+        >
+          publications
+        </button>
+        <button
+          type="button"
+          role="tab"
+          id="tab-research"
+          aria-controls="panel-research"
+          aria-selected="false"
+          class="px-2.5 sm:px-5 py-2 rounded-lg text-sm sm:text-base font-medium uppercase whitespace-nowrap cursor-pointer transition duration-300 text-slate-500 dark:text-slate-400 not-aria-selected:hover:text-slate-700 dark:not-aria-selected:hover:text-slate-200 not-aria-selected:hover:bg-white/30 dark:not-aria-selected:hover:bg-white/10 aria-selected:bg-white/80 dark:aria-selected:bg-white/15 aria-selected:text-slate-900 dark:aria-selected:text-white aria-selected:shadow-md"
+        >
+          research code
+        </button>
       </div>
     </div>
-  </div>
 
-  <!-- Publications / Software tabs -->
-  <div class="my-6">
-    <div class="flex my-6 justify-center gap-8" role="tablist" aria-label="Publications and software">
-      <button
-        type="button"
-        role="tab"
-        id="tab-publications"
-        aria-controls="panel-publications"
-        aria-selected="true"
-        class="text-xl font-medium uppercase cursor-pointer pb-1 border-b-2 transition-colors duration-300 border-transparent text-slate-400 not-aria-selected:hover:text-slate-600 aria-selected:border-greenish aria-selected:text-black"
-      >
-        publications 📚
-      </button>
-      <button
-        type="button"
-        role="tab"
-        id="tab-software"
-        aria-controls="panel-software"
-        aria-selected="false"
-        class="text-xl font-medium uppercase cursor-pointer pb-1 border-b-2 transition-colors duration-300 border-transparent text-slate-400 not-aria-selected:hover:text-slate-600 aria-selected:border-greenish aria-selected:text-black"
-      >
-        software 💿
-      </button>
-    </div>
+    <section id="panel-projects" role="tabpanel" aria-labelledby="tab-projects">
+      <div class="text-base text-slate-600 dark:text-slate-300 text-center italic">
+        <span class="text-base">Things I build in my free time.</span>
+      </div>
+      <div class="flex flex-col gap-1.5 my-4">
+        {
+          projects.map((pr) => (
+            <a
+              href={pr.url}
+              target="_blank"
+              class="group block overflow-hidden rounded-lg first:rounded-t-3xl last:rounded-b-3xl border border-white/60 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur-md shadow-sm hover:bg-white/60 dark:hover:bg-white/10 hover:shadow-md transition duration-300 text-slate-700 dark:text-slate-200"
+            >
+              {pr.image && teasers[pr.image] && (
+                <div class="p-3 pb-0">
+                  <Image
+                    src={teasers[pr.image]}
+                    alt={`${pr.title} teaser`}
+                    widths={[640, 1280]}
+                    sizes="(max-width: 672px) 100vw, 640px"
+                    class="w-full h-44 sm:h-56 object-cover rounded-2xl border border-white/50"
+                  />
+                </div>
+              )}
+              <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 px-5 py-4">
+                <div class="order-2 sm:order-1 flex-1 min-w-0">
+                  <div class="flex items-center">
+                    <span class="text-lg font-semibold text-slate-800 dark:text-slate-100">{pr.title}</span>
+                    <div class="w-4 h-4 ml-1.5 text-secondary dark:text-secondary-300">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                        <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                      </svg>
+                    </div>
+                    <span class="text-sm text-slate-600 dark:text-slate-400 ml-1.5 italic">#{pr.contribution}</span>
+                  </div>
+                  <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">{pr.description}</p>
+                  <p class="text-sm text-secondary dark:text-secondary-300 mt-1">{pr.hashtag}</p>
+                </div>
+                {pr.logo && logos[pr.logo] && (
+                  <div class="order-1 sm:order-2 shrink-0 w-full sm:w-2/5 sm:max-w-44 flex items-center justify-center rounded-xl bg-white/75 border border-white/50 p-3">
+                    <img src={logos[pr.logo].src} alt={`${pr.title} logo`} loading="lazy" class="w-full max-h-44 object-contain sm:w-auto sm:max-w-full sm:max-h-full" />
+                  </div>
+                )}
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
 
-    <section id="panel-publications" role="tabpanel" aria-labelledby="tab-publications">
-      <div class="text-base text-slate-600 text-center italic">
+    <section id="panel-publications" role="tabpanel" aria-labelledby="tab-publications" hidden>
+      <div class="text-base text-slate-600 dark:text-slate-300 text-center italic">
         <span class="text-base"
           >You can also check out my <a
             href="https://scholar.google.com/citations?user=3Pz_4wwAAAAJ"
-            target="_blank"><span class="text-greenish">google scholar</span></a
+            target="_blank"><span class="text-secondary dark:text-secondary-300">google scholar</span></a
           > for an up-to-date list.</span
         >
       </div>
-      <div>
+      <div class="flex flex-col gap-1.5 my-4">
         {
           articles.map((at) => (
-          <div class="px-4 py-3 my-3 border-l-4 border-greenish rounded-sm shadow-md hover:shadow-inner bg-slate-100 transition-shadow duration-300 rounded-r-xl">
+          <div class="px-4 py-3 rounded-lg first:rounded-t-3xl last:rounded-b-3xl border border-white/60 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur-md shadow-sm hover:bg-white/60 dark:hover:bg-white/10 hover:shadow-md transition duration-300 text-slate-700 dark:text-slate-200">
             <span class="text-sm">
-              {at.authors},{' '}
+              <Fragment set:html={at.authors.replace(/D\. Nagel/g, '<strong class="font-bold">DN</strong>')} />,{' '}
               <a href={at.url} target="_blank">
-                <span class="text-greenish italic">{at.title}</span>
+                <span class="text-secondary dark:text-secondary-300 italic">{at.title}</span>
               </a>
               , {at.journal}, {at.year}
               </span>
@@ -64,35 +133,42 @@ import { articles, software } from '../data/index.json';
       </div>
     </section>
 
-    <section id="panel-software" role="tabpanel" aria-labelledby="tab-software" hidden>
-      <div class="text-base text-slate-600 text-center italic">
+    <section id="panel-research" role="tabpanel" aria-labelledby="tab-research" hidden>
+      <div class="text-base text-slate-600 dark:text-slate-300 text-center italic">
         <span class="text-base"
-          >The following list is not complete. Please refer to my Github/Gitlab pages for more
+          >Scientific software from my research. Please refer to my Github pages for more
           details.</span
         >
       </div>
-      <div>
+      <div class="flex flex-col gap-1.5 my-4">
         {
-          software.map((sw) => (
-          <div class="flex flex-col px-4 py-3 my-3 border-l-4 border-greenish rounded-sm shadow-md hover:shadow-inner bg-slate-100 transition-shadow duration-300 rounded-r-xl">
-            <div class="flex mb-2">
-              <a class="flex items-center" href={sw.url} target="_blank">
-                <span class="text-sm">{sw.title}</span>
-                <div class="w-3.5 h-3.5 ml-1.5 text-greenish">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                  </svg>
-                </div>
-                <span class="text-sm text-slate-600 ml-1.5 italic">#{sw.contribution}</span>
+          research.map((sw) => (
+          <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 px-4 py-3 rounded-lg first:rounded-t-3xl last:rounded-b-3xl border border-white/60 dark:border-white/10 bg-white/40 dark:bg-white/5 backdrop-blur-md shadow-sm hover:bg-white/60 dark:hover:bg-white/10 hover:shadow-md transition duration-300 text-slate-700 dark:text-slate-200">
+            <div class="order-2 sm:order-1 flex flex-col flex-1 min-w-0">
+              <div class="flex mb-2">
+                <a class="flex items-center" href={sw.url} target="_blank">
+                  <span class="text-sm">{sw.title}</span>
+                  <div class="w-3.5 h-3.5 ml-1.5 text-secondary dark:text-secondary-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                      <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                    </svg>
+                  </div>
+                  <span class="text-sm text-slate-600 dark:text-slate-400 ml-1.5 italic">#{sw.contribution}</span>
+                </a>
+              </div>
+              <div class="flex text-sm text-slate-600 dark:text-slate-300">
+                <span>{sw.description}</span>
+              </div>
+              <div class="flex text-sm text-secondary dark:text-secondary-300">
+                <span>{sw.hashtag}</span>
+              </div>
+            </div>
+            {sw.logo && logos[sw.logo] && (
+              <a href={sw.url} target="_blank" class="order-1 sm:order-2 shrink-0 w-full sm:w-1/3 sm:max-w-40 flex items-center justify-center rounded-xl bg-white/75 border border-white/50 p-3">
+                <img src={logos[sw.logo].src} alt={`${sw.title} logo`} loading="lazy" class="w-full max-h-44 object-contain sm:w-auto sm:max-w-full sm:max-h-full" />
               </a>
-            </div>
-            <div class="flex text-sm text-slate-600">
-              <span>{sw.description}</span>
-            </div>
-            <div class="flex text-sm text-greenish">
-              <span>{sw.hashtag}</span>
-            </div>
+            )}
           </div>
         ))
       }
@@ -100,15 +176,11 @@ import { articles, software } from '../data/index.json';
     </section>
   </div>
 
-  <!-- With JS disabled, show both panels instead of an unreachable tab -->
+  <!-- With JS disabled, show all panels instead of unreachable tabs -->
   <noscript>
     <style>
       [role='tabpanel'][hidden] {
         display: block;
-      }
-      [role='tab'] {
-        border-color: var(--color-greenish);
-        color: var(--color-black);
       }
     </style>
   </noscript>
@@ -140,7 +212,8 @@ import { articles, software } from '../data/index.json';
     });
   });
 
-  // Support deep links like /#software
-  const initial = document.getElementById('tab-' + location.hash.slice(1));
+  // Support deep links like /#publications (#software is the pre-restructure name)
+  const hash = location.hash.slice(1);
+  const initial = document.getElementById('tab-' + (hash === 'software' ? 'research' : hash));
   if (initial) activate(initial as HTMLButtonElement, false);
 </script>

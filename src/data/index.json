@@ -1,53 +1,91 @@
 {
-  "software": [
-    {
-      "title": "fpsl",
-      "contribution": "creator",
-      "description": "efficient free-energy estimation under periodic boundary conditions",
-      "url": "https://github.com/BereauLab/fokker-planck-score-learning/",
-      "hashtag": "#python #jax #diffusion-model #ml"
-    },
+  "projects": [
     {
       "title": "trale",
       "contribution": "creator",
-      "description": "a simple body weight diary app respecting your privacy",
+      "description": "A privacy-first body-weight diary for Android. It tracks your weight over time with smart trend smoothing and gap interpolation, wrapped in a clean Material design. Your data never leaves the device — no accounts, no tracking, no cloud.",
       "url": "https://github.com/QuantumPhysique/trale/",
-      "hashtag": "#flutter #android"
+      "hashtag": "#flutter #dart #android #material-design #privacy #open-source",
+      "image": "trale"
     },
     {
       "title": "prettypyplot",
       "contribution": "creator",
-      "description": "a wrapper for creating easily beautiful matplotlib figures",
+      "description": "A lightweight wrapper around matplotlib that makes publication-quality figures the default. Sensible color cycles, consistent styling, and one-line helpers take the fiddling out of plotting so you can focus on the data rather than the axes.",
       "url": "https://braniii.github.io/prettypyplot",
-      "hashtag": "#python #matplotlib"
+      "hashtag": "#python #matplotlib #dataviz #plotting #open-source",
+      "logo": "pplt"
+    },
+    {
+      "title": "fontawesome",
+      "contribution": "creator",
+      "description": "A LaTeX package giving you access to the full Font Awesome 7 (and 6) icon sets directly in your documents, presentations, and posters. Published on CTAN and compatible with PDFLaTeX, XeLaTeX, and LuaLaTeX, in both regular and solid styles.",
+      "url": "https://github.com/braniii/fontawesome",
+      "hashtag": "#latex #ctan #fontawesome #typesetting #icons #open-source"
+    }
+  ],
+  "research": [
+    {
+      "title": "fpsl",
+      "contribution": "creator",
+      "description": "A machine-learning method for efficient free-energy estimation under periodic boundary conditions. It trains a diffusion-style score model on the Fokker-Planck dynamics, delivering accurate estimates in regimes where conventional approaches struggle.",
+      "url": "https://github.com/BereauLab/fokker-planck-score-learning/",
+      "hashtag": "#python #jax #diffusion-model #machine-learning #free-energy #statistical-physics",
+      "logo": "fpsl"
     },
     {
       "title": "msmhelper",
       "contribution": "creator",
-      "description": "a time sequence analysis tool for employing Markov state models",
+      "description": "A time-series analysis toolkit for building and validating Markov state models of molecular dynamics. It offers fast, Numba-accelerated routines for clustering, dynamical coring, and pathway analysis of long trajectories.",
       "url": "https://moldyn.github.io/msmhelper",
-      "hashtag": "#python #markovchain #numba #dataanalysis"
+      "hashtag": "#python #numba #markov-state-models #molecular-dynamics #data-analysis"
+    },
+    {
+      "title": "dcTMD",
+      "contribution": "contributor",
+      "description": "An analysis framework for dissipation-corrected targeted molecular dynamics. It reconstructs free-energy profiles and friction factors along a pulled reaction coordinate from nonequilibrium pulling simulations.",
+      "url": "https://github.com/moldyn/dcTMD",
+      "hashtag": "#python #molecular-dynamics #free-energy #nonequilibrium #data-analysis",
+      "logo": "dctmd"
     },
     {
       "title": "MoSAIC",
       "contribution": "creator",
-      "description": "a correlation-based feature selection method",
+      "description": "A correlation-based feature selection method that groups collective coordinates by their mutual dependencies. It uncovers the essential degrees of freedom in high-dimensional data fully unsupervised, without prior assumptions.",
       "url": "https://github.com/moldyn/MoSAIC",
-      "hashtag": "#python #feature-selection #ml"
+      "hashtag": "#python #feature-selection #unsupervised-learning #clustering #data-analysis",
+      "logo": "mosaic"
     },
     {
       "title": "NorMI",
       "contribution": "creator",
-      "description": "a generalized Kraskov estimator for estimating normalized MI",
+      "description": "A generalized Kraskov estimator for the normalized mutual information of multidimensional data. It quantifies nonlinear dependencies robustly, staying accurate even in high dimensions and with limited samples.",
       "url": "https://github.com/moldyn/NorMI",
-      "hashtag": "#python #dataanalysis #ml"
+      "hashtag": "#python #information-theory #mutual-information #statistics #data-analysis",
+      "logo": "normi"
     }
   ],
   "articles": [
     {
       "authors": "D. Nagel and T. Bereau",
+      "title": "Data-efficient multidimensional free energy estimation via physics-informed score learning",
+      "journal": "J. Chem. Phys., 165, 024109",
+      "year": "2026",
+      "doi": "10.1063/5.0327436",
+      "url": "https://pubs.aip.org/aip/jcp/article-abstract/165/2/024109/3398009/Data-efficient-multidimensional-free-energy"
+    },
+    {
+      "authors": "S. Sartore, D. Nagel, G. Diez, and G. Stock",
+      "title": "Lost in Projection? Gaussian Filtering Recovers Hidden Conformational States",
+      "journal": "J. Phys. Chem. Lett, 17, 4418",
+      "year": "2026",
+      "doi": "10.1021/acs.jpclett.6c00341",
+      "url": "https://pubs.acs.org/doi/full/10.1021/acs.jpclett.6c00341"
+    },
+    {
+      "authors": "D. Nagel and T. Bereau",
       "title": "Fokker-Planck Score Learning: Efficient Free-Energy Estimation Under Periodic Boundary Conditions",
-      "journal": "J. Phys. Chem. B, 129, 11xxx",
+      "journal": "J. Phys. Chem. B, 129, 11780",
       "year": "2025",
       "doi": "10.1021/acs.jpcb.5c04579",
       "url": "https://pubs.acs.org/doi/10.1021/acs.jpcb.5c04579"

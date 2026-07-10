@@ -1,3 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <path d="M35 0 H100 V65 Q100 100 65 100 H0 V35 Q0 0 35 0 Z" fill="#4d908e"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Rounded square in the primary color; the "b" is the Baloo 2 800 glyph
+       (extracted from @fontsource/baloo-2) filled with the secondary color. -->
+  <rect width="512" height="512" rx="112" fill="#FFDBCE"/>
+  <path transform="translate(111.1 408.5) scale(0.4727 -0.4727)" fill="#00658B"
+    d="M322 501Q388 501 442.0 472.0Q496 443 527.5 386.0Q559 329 559 245Q559 162 525.5 103.5Q492 45 431.0 14.5Q370 -16 288 -16Q222 -16 176.0 0.0Q130 16 98 38Q77 53 65.5 73.0Q54 93 54 118V652Q65 655 85.5 658.0Q106 661 130 661Q180 661 202.0 644.5Q224 628 224 581V482Q237 487 252 492Q284 501 322 501ZM223 350V133Q234 127 249.5 122.5Q265 118 286 118Q331 118 358.0 150.5Q385 183 385 245Q385 309 359.5 338.5Q334 368 290 368Q260 368 237 357Q230 354 223 350Z"/>
 </svg>

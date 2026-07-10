@@ -11,21 +11,95 @@ import Footer from '../components/Footer.astro';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Personal page of Daniel Nagel (@braniii) — publications and open source software."
+      content="Personal page of Daniel Nagel (@braniii) — projects, publications and open source software."
     />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <title>Daniel Nagel</title>
+    <script is:inline>
+      // Apply the stored light/dark/auto theme before first paint (no flash).
+      (() => {
+        const stored = localStorage.getItem('theme') || 'auto';
+        const systemDark = matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle(
+          'dark',
+          stored === 'dark' || (stored === 'auto' && systemDark)
+        );
+        document.documentElement.dataset.themeChoice = stored;
+      })();
+    </script>
   </head>
 
-  <body class="bg-white min-h-screen sm:py-6">
-    <div class="flex w-full min-h-screen items-start sm:items-center justify-center">
-      <div class="sm:pt-60">
-        <div class="w-full max-w-2xl px-6 mx-auto my-auto h-auto">
+  <body class="bg-white dark:bg-black min-h-screen p-2 sm:p-4">
+    <!-- On touch devices .split-pin is sticky and .split-runway adds scroll
+         room: the first 150px of scroll pin the page while the split-reveal
+         heading scrubs open (see global.css / Header.astro). -->
+    <div class="split-pin">
+      <!-- Colored canvas framed by the white page background -->
+      <div
+        class="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] min-h-[calc(100vh-1rem)] sm:min-h-[calc(100vh-2rem)] bg-gradient-to-b from-primary-200 to-primary-500 dark:from-primary-950 dark:to-primary-600"
+
+      >
+      <!-- Glossy top highlight -->
+      <div
+        class="pointer-events-none absolute inset-0 dark:opacity-25 bg-[radial-gradient(120%_60%_at_50%_-10%,rgba(255,255,255,0.65),transparent_60%)]"
+      >
+      </div>
+
+      <!-- Theme toggle, top-right of the colored canvas. Cycles light → dark →
+           auto; the active icon is chosen by CSS from data-theme-choice. -->
+      <button
+        type="button"
+        class="theme-toggle absolute top-4 right-4 sm:top-5 sm:right-5 z-10 grid place-items-center w-9 h-9 rounded-full text-slate-600 dark:text-slate-300 bg-white/40 dark:bg-white/10 border border-white/60 dark:border-white/15 backdrop-blur-md shadow-sm hover:bg-white/60 dark:hover:bg-white/20 transition duration-300 cursor-pointer"
+        aria-label="Switch color theme"
+        title="Switch color theme"
+      >
+        <svg data-icon="light" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+        </svg>
+        <svg data-icon="dark" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+        <svg data-icon="auto" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="13" rx="2" />
+          <path d="M8 21h8M12 17v4" />
+        </svg>
+      </button>
+      <div
+        class="relative flex w-full min-h-[calc(100vh-1rem)] sm:min-h-[calc(100vh-2rem)] items-start sm:items-center justify-center"
+      >
+        <div class="w-full max-w-2xl px-4 sm:px-6 py-4 sm:py-8 mx-auto h-auto">
           <Header />
           <slot />
           <Footer />
         </div>
       </div>
+      </div>
     </div>
+    <div class="split-runway" aria-hidden="true"></div>
+
+    <script>
+      // Theme toggle cycles light → dark → auto and persists the choice.
+      const root = document.documentElement;
+      const media = matchMedia('(prefers-color-scheme: dark)');
+      const order = ['light', 'dark', 'auto'];
+
+      const apply = (choice: string) => {
+        root.classList.toggle('dark', choice === 'dark' || (choice === 'auto' && media.matches));
+        root.dataset.themeChoice = choice;
+      };
+
+      document.querySelector('.theme-toggle')?.addEventListener('click', () => {
+        const current = root.dataset.themeChoice || 'auto';
+        const next = order[(order.indexOf(current) + 1) % order.length];
+        localStorage.setItem('theme', next);
+        apply(next);
+      });
+
+      // Follow the system when the choice is auto.
+      media.addEventListener('change', () => {
+        if ((root.dataset.themeChoice || 'auto') === 'auto') apply('auto');
+      });
+    </script>
   </body>
 </html>
