@@ -1,25 +1,30 @@
 # personal webpage :-)
 
-This repository generates a static HTML webpage with:
+This repository generates a static webpage with:
 
-- The Jinja2 templating engine.
-- The TailwindCSS utility framework.
+- [Astro](https://astro.build) v7
+- [TailwindCSS](https://tailwindcss.com) v4
 
-### Dependencies
+### Development
 
 ```sh
-$ cd site/
-$ poetry install     # Install Python dependencies (Jinja2).
-$ cd styles/
-$ yarn install       # Install JavaScript dependencies (TailwindCSS).
+$ npm install    # Install dependencies.
+$ npm run dev    # Start the dev server at localhost:4321.
 ```
 
 ### Building
 
 ```sh
-$ ./compile.py full  # To regenerate the entire site.
-$ ./compile.py       # Regenerate the HTML but skip the TailwindCSS build step.
+$ npm run build      # Build the static site into dist/.
+$ npm run preview    # Preview the production build locally.
 ```
+
+Deployment happens automatically via GitHub Actions on pushes to `master`,
+publishing `dist/` to the `gh-pages` branch.
+
+### Content
+
+The page content (publications, software) lives in `src/data/index.json`.
 
 ### Assets
 
