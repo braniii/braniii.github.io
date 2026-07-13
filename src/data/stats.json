@@ -1,15 +1,15 @@
 {
-  "updated": "2026-07-10",
+  "updated": "2026-07-13",
   "totals": {
-    "downloads": 53811,
+    "downloads": 54077,
     "citations": 214,
     "stars": 323
   },
   "packages": {
     "prettypyplot": {
       "pypi": null,
-      "conda": 10375,
-      "total": 10375
+      "conda": 10447,
+      "total": 10447
     },
     "Fokker-Planck Score Learning": {
       "pypi": null,
@@ -17,23 +17,23 @@
     },
     "msmhelper": {
       "pypi": null,
-      "conda": 19760,
-      "total": 19760
+      "conda": 19840,
+      "total": 19840
     },
     "dcTMD": {
       "pypi": null,
-      "conda": 3057,
-      "total": 3057
+      "conda": 3081,
+      "total": 3081
     },
     "MoSAIC": {
       "pypi": null,
-      "conda": 15526,
-      "total": 15526
+      "conda": 15590,
+      "total": 15590
     },
     "NorMI": {
       "pypi": null,
-      "conda": 5093,
-      "total": 5093
+      "conda": 5119,
+      "total": 5119
     }
   },
   "stars": {
