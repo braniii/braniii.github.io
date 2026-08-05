@@ -13,6 +13,8 @@ from __future__ import annotations
 
 import json
 import os
+import random
+import ssl
 import sys
 import urllib.request
 from datetime import date, timezone, datetime
@@ -75,23 +77,101 @@ def _norm(title: str) -> str:
     return "".join(c for c in title.lower() if c.isalnum())
 
 
-def scholar_data() -> tuple[int | None, dict[str, int]]:
-    """Return (total citations, {normalized_title: num_citations})."""
-    try:
-        from scholarly import scholarly
+#: Google Scholar CAPTCHAs GitHub's datacenter IPs, so a direct fetch from CI
+#: is a coin flip at best. Retry through a handful of random free proxies from
+#: proxifly's auto-updated list (refreshed every few minutes on their CDN).
+#: Needs scholarly to run on httpx<0.28 (pinned in stats.yml): scholarly still
+#: passes the `proxies=` kwarg that httpx 0.28 removed.
+PROXY_LIST_URL = (
+    "https://cdn.jsdelivr.net/gh/proxifly/free-proxy-list@main/proxies/all/data.json"
+)
+PROXY_TRIES = 5
 
-        author = scholarly.search_author_id(SCHOLAR_ID)
-        author = scholarly.fill(author, sections=["indices", "publications"])
-        total = int(author.get("citedby"))
-        pubs: dict[str, int] = {}
-        for p in author.get("publications", []):
-            title = p.get("bib", {}).get("title", "")
-            if title:
-                pubs[_norm(title)] = int(p.get("num_citations", 0) or 0)
-        return total, pubs
+
+def _proxy_candidates(n: int = PROXY_TRIES) -> list[str]:
+    """Random sample of proxy URLs that can tunnel HTTPS (Scholar is
+    HTTPS-only).
+
+    In proxifly's list `https: true` means the proxy itself speaks TLS, so the
+    returned URLs use the https:// scheme (plain CONNECT on these is refused).
+    SOCKS entries are skipped — scholarly's session is httpx, which cannot
+    speak socks4 and needs an extra package for socks5 — and `anonymity` is
+    ignored because no elite proxy currently passes the https filter.
+    """
+    try:
+        data = get_json(PROXY_LIST_URL)
     except Exception as e:  # noqa: BLE001
-        print(f"  scholar: {e}", file=sys.stderr)
-        return None, {}
+        print(f"  proxy list: {e}", file=sys.stderr)
+        return []
+    usable = [
+        "https://" + p["proxy"].removeprefix("http://")
+        for p in data
+        if p.get("protocol") == "http" and p.get("https")
+    ]
+    return random.sample(usable, min(n, len(usable)))
+
+
+def _route_through(proxy_url: str) -> None:
+    """Point scholarly's session at one TLS free proxy.
+
+    Bypasses ProxyGenerator.SingleProxy: that path assumes a plaintext proxy,
+    and these proxies present self-signed certs, so the TLS handshake to the
+    proxy needs an unverified ssl_context — expressible only as an httpx.Proxy
+    object, which SingleProxy's string handling cannot carry. Setting the
+    generator's internals and rebuilding its session is the narrowest way
+    through; the traffic to Scholar itself stays fully verified TLS end-to-end
+    inside the tunnel.
+    """
+    import httpx
+    from scholarly import ProxyGenerator, scholarly
+    from scholarly._proxy_generator import ProxyMode
+
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+    proxy = httpx.Proxy(proxy_url, ssl_context=ctx)
+    pg = ProxyGenerator()
+    pg.proxy_mode = ProxyMode.SINGLEPROXY
+    pg._proxy_works = True
+    pg._proxies = {"http://": proxy, "https://": proxy}
+    pg._new_session()
+    scholarly.use_proxy(pg, pg)
+
+
+def _fetch_scholar() -> tuple[int, dict[str, int]]:
+    from scholarly import scholarly
+
+    author = scholarly.search_author_id(SCHOLAR_ID)
+    author = scholarly.fill(author, sections=["indices", "publications"])
+    total = int(author.get("citedby"))
+    pubs: dict[str, int] = {}
+    for p in author.get("publications", []):
+        title = p.get("bib", {}).get("title", "")
+        if title:
+            pubs[_norm(title)] = int(p.get("num_citations", 0) or 0)
+    return total, pubs
+
+
+def scholar_data() -> tuple[int | None, dict[str, int]]:
+    """Return (total citations, {normalized_title: num_citations}).
+
+    Tries a direct connection first (works locally, rarely from CI), then
+    PROXY_TRIES random free proxies. Failing fast matters more than squeezing
+    retries out of one blocked route, so scholarly's own retrying is dialed
+    down and rotation happens here instead.
+    """
+    from scholarly import scholarly
+
+    scholarly.set_timeout(10)
+    scholarly.set_retries(1)
+    for proxy in [None, *_proxy_candidates()]:
+        try:
+            if proxy:
+                _route_through(proxy)
+            return _fetch_scholar()
+        except Exception as e:  # noqa: BLE001
+            print(f"  scholar via {proxy or 'direct'}: {e}", file=sys.stderr)
+    return None, {}
 
 
 def main() -> int:

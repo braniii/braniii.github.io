@@ -30,7 +30,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SCHOLAR_ID: "3Pz_4wwAAAAJ"
         run: |
-          pip install scholarly
+          # httpx pinned: scholarly's proxy path still passes the `proxies=`
+          # kwarg that httpx 0.28 removed (see scripts/fetch_stats.py).
+          pip install scholarly "httpx<0.28"
           python scripts/fetch_stats.py
 
       - name: Commit updated stats
