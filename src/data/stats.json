@@ -1,45 +1,45 @@
 {
-  "updated": "2026-10-05",
+  "updated": "2026-10-12",
   "totals": {
-    "downloads": 199052,
+    "downloads": 200070,
     "citations": 225,
-    "stars": 374
+    "stars": 383
   },
   "packages": {
     "prettypyplot": {
-      "pypi": 76977,
-      "conda": 12384,
-      "total": 89361
+      "pypi": 77024,
+      "conda": 12524,
+      "total": 89548
     },
     "Fokker-Planck Score Learning": {
-      "pypi": 1332,
-      "total": 1332
+      "pypi": 1343,
+      "total": 1343
     },
     "msmhelper": {
-      "pypi": 19937,
-      "conda": 21951,
-      "total": 41888
+      "pypi": 20052,
+      "conda": 22133,
+      "total": 42185
     },
     "dcTMD": {
-      "pypi": 8530,
-      "conda": 3981,
-      "total": 12511
+      "pypi": 8600,
+      "conda": 4078,
+      "total": 12678
     },
     "MoSAIC": {
-      "pypi": 21921,
-      "conda": 17389,
-      "total": 39310
+      "pypi": 21976,
+      "conda": 17537,
+      "total": 39513
     },
     "NorMI": {
-      "pypi": 8593,
-      "conda": 6057,
-      "total": 14650
+      "pypi": 8647,
+      "conda": 6156,
+      "total": 14803
     }
   },
   "stars": {
-    "trale": 225,
+    "trale": 233,
     "prettypyplot": 11,
-    "fontawesome": 48,
+    "fontawesome": 49,
     "Fokker-Planck Score Learning": 10,
     "msmhelper": 11,
     "dcTMD": 17,
