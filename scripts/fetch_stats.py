@@ -82,8 +82,11 @@ def _norm(title: str) -> str:
 #: proxifly's auto-updated list (refreshed every few minutes on their CDN).
 #: Needs scholarly to run on httpx<0.28 (pinned in stats.yml): scholarly still
 #: passes the `proxies=` kwarg that httpx 0.28 removed.
+#: Uses the per-protocol https list: the combined proxies/all/data.json grew
+#: past jsDelivr's 20 MB per-file limit, which jsDelivr answers with a 403.
 PROXY_LIST_URL = (
-    "https://cdn.jsdelivr.net/gh/proxifly/free-proxy-list@main/proxies/all/data.json"
+    "https://cdn.jsdelivr.net/gh/proxifly/free-proxy-list@main"
+    "/proxies/protocols/https/data.json"
 )
 PROXY_TRIES = 5
 
@@ -92,11 +95,12 @@ def _proxy_candidates(n: int = PROXY_TRIES) -> list[str]:
     """Random sample of proxy URLs that can tunnel HTTPS (Scholar is
     HTTPS-only).
 
-    In proxifly's list `https: true` means the proxy itself speaks TLS, so the
-    returned URLs use the https:// scheme (plain CONNECT on these is refused).
-    SOCKS entries are skipped — scholarly's session is httpx, which cannot
-    speak socks4 and needs an extra package for socks5 — and `anonymity` is
-    ignored because no elite proxy currently passes the https filter.
+    In proxifly's list `protocol: "https"` means the proxy itself speaks TLS,
+    and its `proxy` URL already carries the https:// scheme (plain CONNECT on
+    these is refused). SOCKS lists are not used — scholarly's session is httpx,
+    which cannot speak socks4 and needs an extra package for socks5 — and
+    `anonymity` is ignored because every proxy in the https list is
+    transparent.
     """
     try:
         data = get_json(PROXY_LIST_URL)
@@ -104,9 +108,9 @@ def _proxy_candidates(n: int = PROXY_TRIES) -> list[str]:
         print(f"  proxy list: {e}", file=sys.stderr)
         return []
     usable = [
-        "https://" + p["proxy"].removeprefix("http://")
+        p["proxy"]
         for p in data
-        if p.get("protocol") == "http" and p.get("https")
+        if p.get("protocol") == "https" and p["proxy"].startswith("https://")
     ]
     return random.sample(usable, min(n, len(usable)))
 
