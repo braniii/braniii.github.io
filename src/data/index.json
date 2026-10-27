@@ -86,6 +86,14 @@
   ],
   "articles": [
     {
+      "authors": "M. Jäger, V. Tänzel, D. Nagel, and S. Wolf",
+      "title": "dcTMD: a Python package for performing dissipation-corrected targeted molecular dynamics",
+      "journal": "J. Open Source Soft., 11, 10244",
+      "year": "2026",
+      "doi": "10.21105/joss.10244",
+      "url": "https://joss.theoj.org/papers/10.21105/joss.10244"
+    },
+    {
       "authors": "D. Nagel and T. Bereau",
       "title": "Data-efficient multidimensional free energy estimation via physics-informed score learning",
       "journal": "J. Chem. Phys., 165, 024109",
