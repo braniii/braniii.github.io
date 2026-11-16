@@ -1,15 +1,15 @@
 {
-  "updated": "2026-11-02",
+  "updated": "2026-11-16",
   "totals": {
-    "downloads": 201748,
-    "citations": 240,
-    "stars": 398
+    "downloads": 201856,
+    "citations": 242,
+    "stars": 405
   },
   "packages": {
     "prettypyplot": {
       "pypi": 77611,
-      "conda": 12623,
-      "total": 90234
+      "conda": 12666,
+      "total": 90277
     },
     "Fokker-Planck Score Learning": {
       "pypi": 1389,
@@ -17,27 +17,27 @@
     },
     "msmhelper": {
       "pypi": 20248,
-      "conda": 22214,
-      "total": 42462
+      "conda": 22225,
+      "total": 42473
     },
     "dcTMD": {
       "pypi": 8742,
-      "conda": 4124,
-      "total": 12866
+      "conda": 4135,
+      "total": 12877
     },
     "MoSAIC": {
       "pypi": 22171,
-      "conda": 17617,
-      "total": 39788
+      "conda": 17648,
+      "total": 39819
     },
     "NorMI": {
       "pypi": 8804,
-      "conda": 6205,
-      "total": 15009
+      "conda": 6217,
+      "total": 15021
     }
   },
   "stars": {
-    "trale": 246,
+    "trale": 253,
     "prettypyplot": 12,
     "fontawesome": 50,
     "Fokker-Planck Score Learning": 10,
@@ -52,9 +52,9 @@
     "10.1021/acs.jpclett.6c00341": 2,
     "10.1021/acs.jpcb.5c04579": 3,
     "10.1063/5.0217960": 34,
-    "10.1021/acs.jpclett.3c01561": 25,
+    "10.1021/acs.jpclett.3c01561": 26,
     "10.21105/joss.05339": 10,
-    "10.1021/acs.jctc.3c00240": 31,
+    "10.1021/acs.jctc.3c00240": 32,
     "10.1021/acs.jctc.2c00337": 67,
     "10.1021/acs.jctc.0c00774": 21,
     "10.1063/1.5081767": 40
